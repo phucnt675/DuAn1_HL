@@ -23,6 +23,8 @@ Route::get('/products', 'App\Controllers\Client\ProductController@index');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 Route::get('/login','App\Controllers\Client\AuthController@login');
 Route::get('/register','App\Controllers\Client\AuthController@register');
+Route::get('/about','App\Controllers\Client\AboutController@index');
+
 // trang contact
 Route::get('/contact','App\Controllers\Client\ContactController@index');
 
