@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Client\Pages\About;
+namespace App\Views\Client\Pages\Contact;
 
 use App\Views\BaseView;
 
@@ -16,38 +16,100 @@ class Index extends BaseView
 
             <div class="main_body_content">
 
-                <!-- about section -->
+                <div class="hero_area">
+                    <!-- header section strats -->
+                    <header class="header_section">
+                        <div class="container-fluid">
+                            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                                <a class="navbar-brand" href="index.html">
+                                    ChocoLux
+                                </a>
+                                </a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class=""> </span>
+                                </button>
 
-                <section class="about_section layout_padding ">
-                    <div class="container  ">
+                                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="about.html"> About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chocolate.html">Chocolates</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="testimonial.html">Testimonial</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="contact.html">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                    <div class="quote_btn-container">
+                                        <form class="form-inline">
+                                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                        <a href="">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </header>
+                    <!-- end header section -->
+                </div>
+
+
+                <!-- contact section -->
+
+                <section class="contact_section layout_padding">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="detail-box">
+                            <div class="col-md-5 col-lg-4 offset-md-1 offset-lg-2">
+                                <div class="form_container">
                                     <div class="heading_container">
                                         <h2>
-                                            About Our Company
+                                            Contact Us
                                         </h2>
                                     </div>
-                                    <p>
-                                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web pagend web page editors now use Lorem Ipsum as their default model text, </p>
-                                    <a href="#">
-                                        <span>
-                                            Read More
-                                        </span>
-                                        <img src="images/color-arrow.png" alt="">
-                                    </a>
+                                    <form action="">
+                                        <div>
+                                            <input type="text" placeholder="Full Name " />
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="Phone number" />
+                                        </div>
+                                        <div>
+                                            <input type="email" placeholder="Email" />
+                                        </div>
+                                        <div>
+                                            <input type="text" class="message-box" placeholder="Message" />
+                                        </div>
+                                        <div class="d-flex ">
+                                            <button>
+                                                SEND NOW
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="img-box">
-                                    <img src="images/about-img.png" alt="">
+                            <div class="col-md-6  px-0">
+                                <div class="map_container">
+                                    <div class="map">
+                                        <div id="googleMap"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- end about section -->
+                <!-- end contact section -->
 
 
                 <!-- info section -->
@@ -86,10 +148,10 @@ class Index extends BaseView
                                         Menu
                                     </h4>
                                     <div class="info_links_menu">
-                                        <a href="/">
+                                        <a href="index.html">
                                             Home
                                         </a>
-                                        <a href="/aboutabout">
+                                        <a href="about.html">
                                             About
                                         </a>
                                         <a href="chocolate.html">
@@ -191,9 +253,11 @@ class Index extends BaseView
             <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
             <!-- custom js -->
             <script src="js/custom.js"></script>
+            <!-- Google Map -->
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+            <!-- End Google Map -->
 
         </body>
 <?php
-    
     }
 }
