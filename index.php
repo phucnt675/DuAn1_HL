@@ -24,6 +24,12 @@ Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 Route::get('/login','App\Controllers\Client\AuthController@login');
 Route::get('/register','App\Controllers\Client\AuthController@register');
 Route::get('/about','App\Controllers\Client\AboutController@index');
+Route::get('/chocolate','App\Controllers\Client\ChocolateController@index');
+Route::get('/testimonial','App\Controllers\Client\TestimonialController@index');
+Route::get('/contact','App\Controllers\Client\ContactController@index');
+
+
+
 
 // trang contact
 Route::get('/contact','App\Controllers\Client\ContactController@index');

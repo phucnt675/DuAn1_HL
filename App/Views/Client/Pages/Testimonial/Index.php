@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Client\Pages\Contact;
+namespace App\Views\Client\Pages\Testimonial;
 
 use App\Views\BaseView;
 
@@ -40,10 +40,10 @@ class Index extends BaseView
                                         <li class="nav-item">
                                             <a class="nav-link" href="chocolate.html">Chocolates</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item active">
                                             <a class="nav-link" href="testimonial.html">Testimonial</a>
                                         </li>
-                                        <li class="nav-item active">
+                                        <li class="nav-item">
                                             <a class="nav-link" href="contact.html">Contact Us</a>
                                         </li>
                                     </ul>
@@ -65,43 +65,84 @@ class Index extends BaseView
                 </div>
 
 
-                <!-- contact section -->
+                <!-- client section -->
 
-                <section class="contact_section layout_padding">
+                <section class="client_section layout_padding">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-5 col-lg-4 offset-md-1 offset-lg-2">
-                                <div class="form_container">
-                                    <div class="heading_container">
-                                        <h2>
-                                            Contact Us
-                                        </h2>
-                                    </div>
-                                    <form action="">
-                                        <div>
-                                            <input type="text" placeholder="Full Name " />
-                                        </div>
-                                        <div>
-                                            <input type="text" placeholder="Phone number" />
-                                        </div>
-                                        <div>
-                                            <input type="email" placeholder="Email" />
-                                        </div>
-                                        <div>
-                                            <input type="text" class="message-box" placeholder="Message" />
-                                        </div>
-                                        <div class="d-flex ">
-                                            <button>
-                                                SEND NOW
-                                            </button>
-                                        </div>
-                                    </form>
+                            <div class="col-lg-4 ml-auto">
+                                <div class="img-box sub_img-box">
+                                    <img src="images/client-chocolate.png" alt="">
                                 </div>
                             </div>
-                            <div class="col-md-6  px-0">
-                                <div class="map_container">
-                                    <div class="map">
-                                        <div id="googleMap"></div>
+                            <div class="col-lg-6 px-0">
+                                <div class="client_container">
+                                    <div class="heading_container">
+                                        <h2>
+                                            Testimonial
+                                        </h2>
+                                    </div>
+                                    <div id="customCarousel2" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="box">
+                                                    <div class="img-box">
+                                                        <img src="images/client-img.jpg" alt="">
+                                                    </div>
+                                                    <div class="detail-box">
+                                                        <h4>
+                                                            Gero Miliya
+                                                        </h4>
+                                                        <p>
+                                                            long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it haslong established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it haslong established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                                                        </p>
+                                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="box">
+                                                    <div class="img-box">
+                                                        <img src="images/client-img.jpg" alt="">
+                                                    </div>
+                                                    <div class="detail-box">
+                                                        <h4>
+                                                            Gero Miliya
+                                                        </h4>
+                                                        <p>
+                                                            long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it haslong established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it haslong established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                                                        </p>
+                                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="box">
+                                                    <div class="img-box">
+                                                        <img src="images/client-img.jpg" alt="">
+                                                    </div>
+                                                    <div class="detail-box">
+                                                        <h4>
+                                                            Gero Miliya
+                                                        </h4>
+                                                        <p>
+                                                            long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it haslong established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it haslong established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                                                        </p>
+                                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel_btn-box">
+                                            <a class="carousel-control-prev" href="#customCarousel2" role="button" data-slide="prev">
+                                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#customCarousel2" role="button" data-slide="next">
+                                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,8 +150,7 @@ class Index extends BaseView
                     </div>
                 </section>
 
-                <!-- end contact section -->
-
+                <!-- end client section -->
 
                 <!-- info section -->
                 <section class="info_section layout_padding2">
@@ -254,8 +294,6 @@ class Index extends BaseView
             <!-- custom js -->
             <script src="js/custom.js"></script>
             <!-- Google Map -->
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-            <!-- End Google Map -->
 
         </body>
 <?php

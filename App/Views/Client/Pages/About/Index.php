@@ -194,6 +194,6 @@ class Index extends BaseView
 
         </body>
 <?php
-
+    
     }
 }

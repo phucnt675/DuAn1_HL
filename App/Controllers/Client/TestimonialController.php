@@ -5,9 +5,9 @@ namespace App\Controllers\Client;
 use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Auth\Register;
-use App\Views\Client\Pages\Contact\Index;
+use App\Views\Client\Pages\Testimonial\Index;
 
-class ContactController{
+class TestimonialController{
     public static function index(){
         
         Header::render();

@@ -4,10 +4,11 @@ namespace App\Controllers\Client;
 
 use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Layouts\Header;
+use App\Views\Client\Pages\ChocolateChocolate\Index;
 use App\Views\Client\Pages\Auth\Register;
-use App\Views\Client\Pages\Contact\Index;
 
-class ContactController{
+
+class ChocolateController{
     public static function index(){
         
         Header::render();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Client\Pages\Contact;
+namespace App\Views\Client\Pages\ChocolateChocolate;
 
 use App\Views\BaseView;
 
@@ -37,13 +37,13 @@ class Index extends BaseView
                                         <li class="nav-item">
                                             <a class="nav-link" href="about.html"> About</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item active">
                                             <a class="nav-link" href="chocolate.html">Chocolates</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="testimonial.html">Testimonial</a>
                                         </li>
-                                        <li class="nav-item active">
+                                        <li class="nav-item">
                                             <a class="nav-link" href="contact.html">Contact Us</a>
                                         </li>
                                     </ul>
@@ -64,53 +64,122 @@ class Index extends BaseView
                     <!-- end header section -->
                 </div>
 
+                <!-- chocolate section -->
 
-                <!-- contact section -->
-
-                <section class="contact_section layout_padding">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-5 col-lg-4 offset-md-1 offset-lg-2">
-                                <div class="form_container">
-                                    <div class="heading_container">
-                                        <h2>
-                                            Contact Us
-                                        </h2>
-                                    </div>
-                                    <form action="">
-                                        <div>
-                                            <input type="text" placeholder="Full Name " />
-                                        </div>
-                                        <div>
-                                            <input type="text" placeholder="Phone number" />
-                                        </div>
-                                        <div>
-                                            <input type="email" placeholder="Email" />
-                                        </div>
-                                        <div>
-                                            <input type="text" class="message-box" placeholder="Message" />
-                                        </div>
-                                        <div class="d-flex ">
-                                            <button>
-                                                SEND NOW
-                                            </button>
-                                        </div>
-                                    </form>
+                <section class="chocolate_section layout_padding">
+                    <div class="container">
+                        <div class="heading_container">
+                            <h2>
+                                Our chocolate products
+                            </h2>
+                            <p>
+                                Many desktop publishing packages and web pagend web page editors now use Lorem Ipsum as their
+                            </p>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="chocolate_container">
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/chocolate1.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Yummy <span>chocolate</span>
+                                    </h6>
+                                    <h5>
+                                        $5.0
+                                    </h5>
+                                    <a href="">
+                                        BUY NOW
+                                    </a>
                                 </div>
                             </div>
-                            <div class="col-md-6  px-0">
-                                <div class="map_container">
-                                    <div class="map">
-                                        <div id="googleMap"></div>
-                                    </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/chocolate2.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Yummy <span>chocolate</span>
+                                    </h6>
+                                    <h5>
+                                        $5.0
+                                    </h5>
+                                    <a href="">
+                                        BUY NOW
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/chocolate3.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Yummy <span>chocolate</span>
+                                    </h6>
+                                    <h5>
+                                        $5.0
+                                    </h5>
+                                    <a href="">
+                                        BUY NOW
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/chocolate1.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Yummy <span>chocolate</span>
+                                    </h6>
+                                    <h5>
+                                        $5.0
+                                    </h5>
+                                    <a href="">
+                                        BUY NOW
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/chocolate2.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Yummy <span>chocolate</span>
+                                    </h6>
+                                    <h5>
+                                        $5.0
+                                    </h5>
+                                    <a href="">
+                                        BUY NOW
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="img-box">
+                                    <img src="images/chocolate3.png" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Yummy <span>chocolate</span>
+                                    </h6>
+                                    <h5>
+                                        $5.0
+                                    </h5>
+                                    <a href="">
+                                        BUY NOW
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- end contact section -->
-
+                <!-- end chocolate section -->
 
                 <!-- info section -->
                 <section class="info_section layout_padding2">
@@ -253,9 +322,6 @@ class Index extends BaseView
             <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js"></script>
             <!-- custom js -->
             <script src="js/custom.js"></script>
-            <!-- Google Map -->
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-            <!-- End Google Map -->
 
         </body>
 <?php
