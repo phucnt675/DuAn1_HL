@@ -77,13 +77,13 @@ class Header extends BaseView
                       <a class="nav-link" href="/about"> About</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="chocolate.html">Chocolates</a>
+                      <a class="nav-link" href="/chocolate">Chocolates</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="testimonial.html">Testimonial</a>
+                      <a class="nav-link" href="/testimonial">Testimonial</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="contact.html">Contact Us</a>
+                      <a class="nav-link" href="/contact">Contact Us</a>
                     </li>
                   </ul>
                   <div class="quote_btn-container">
