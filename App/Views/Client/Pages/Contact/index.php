@@ -1,0 +1,244 @@
+<?php
+
+namespace App\Views\Client\Pages\Contact;
+
+use App\Views\BaseView;
+
+class Index extends BaseView
+{
+    public static function render($data = null)
+    {
+        ?>
+
+        <body class="sub_page">
+
+            <div class="main_body_content">
+
+                <div class="hero_area">
+                    <!-- header section strats -->
+                    <header class="header_section">
+                        <div class="container-fluid">
+                            <nav class="navbar navbar-expand-lg custom_nav-container ">
+                                <a class="navbar-brand" href="/">
+                                    ChocoLux
+                                </a>
+                                </a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class=""> </span>
+                                </button>
+
+                                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item ">
+                                            <a class="nav-link" href="index.html">Home <span
+                                                    class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="about.html"> About</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="chocolate.html">Chocolates</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="testimonial.html">Testimonial</a>
+                                        </li>
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="contact.html">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                    <div class="quote_btn-container">
+                                        <form class="form-inline">
+                                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                        <a href="">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </header>
+                    <!-- end header section -->
+                </div>
+
+
+                <!-- contact section -->
+
+                <section class="contact_section layout_padding">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-5 col-lg-4 offset-md-1 offset-lg-2">
+                                <div class="form_container">
+                                    <div class="heading_container">
+                                        <h2>
+                                            Contact Us
+                                        </h2>
+                                    </div>
+                                    <form action="contact_process.php" method="POST">
+                                        <div>
+                                            <input type="text" placeholder="Full Name " />
+                                        </div>
+                                        <div>
+                                            <input type="text" placeholder="Phone number" />
+                                        </div>
+                                        <div>
+                                            <input type="email" placeholder="Email" />
+                                        </div>
+                                        <div>
+                                            <input type="text" class="message-box" placeholder="Message" />
+                                        </div>
+                                        <div class="d-flex ">
+                                            <button>
+                                                SEND NOW
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6  px-0">
+                                <div class="map_container">
+                                    <div class="map">
+                                        <div id="googleMap"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- end contact section -->
+
+
+                <!-- info section -->
+                <section class="info_section layout_padding2">
+                    <div class="container">
+                        <div class="row info_form_social_row">
+                            <div class="col-md-8 col-lg-9">
+                                <div class="info_form">
+                                    <form action="contact_process.php" method="POST">
+                                        <input type="email" placeholder="Enter your email">
+                                        <button>
+                                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+
+                                <div class="social_box">
+                                    <a href="">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="">
+                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row info_main_row">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="info_links">
+                                    <h4>
+                                        Menu
+                                    </h4>
+                                    <div class="info_links_menu">
+                                        <a href="index.html">
+                                            Home
+                                        </a>
+                                        <a href="about.html">
+                                            About
+                                        </a>
+                                        <a href="chocolate.html">
+                                            Chocolates
+                                        </a>
+                                        <a href="testimonial.html">
+                                            Testimonial
+                                        </a>
+                                        <a href="contact.html">
+                                            Contact us
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="info_insta">
+                                    <h4>
+                                        Instagram
+                                    </h4>
+                                    <div class="insta_box">
+                                        <div class="img-box">
+                                            <img src="images/insta-img.png" alt="">
+                                        </div>
+                                        <p>
+                                            long established fact that a reader
+                                        </p>
+                                    </div>
+                                    <div class="insta_box">
+                                        <div class="img-box">
+                                            <img src="images/insta-img.png" alt="">
+                                        </div>
+                                        <p>
+                                            long established fact that a reader
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="info_detail">
+                                    <h4>
+                                        Company
+                                    </h4>
+                                    <p class="mb-0">
+                                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                        normal distribution of letters, as opposed to
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <h4>
+                                    Contact Us
+                                </h4>
+                                <div class="info_contact">
+                                    <a href="">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <span>
+                                            Location
+                                        </span>
+                                    </a>
+                                    <a href="">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        <span>
+                                            Call +01 1234567890
+                                        </span>
+                                    </a>
+                                    <a href="">
+                                        <i class="fa fa-envelope"></i>
+                                        <span>
+                                            demo@gmail.com
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- end info_section -->
+
+            </div>
+
+            <!-- footer section -->
+
+        </body>
+        <?php
+    }
+}
+
+?>
