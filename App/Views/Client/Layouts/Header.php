@@ -41,7 +41,7 @@ class Header extends BaseView
       <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet" />
       <!-- slick slider -->
 
-      <link rel="stylesheet" href="public/assets/client/css/slick-theme.csscss" />
+      <link rel="stylesheet" href="public/assets/client/css/slick-theme.css" />
       <!-- font awesome style -->
       <link href="public/assets/client/css/font-awesome.min.css" rel="stylesheet" />
       <!-- Custom styles for this template -->

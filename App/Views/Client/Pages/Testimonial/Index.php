@@ -27,7 +27,7 @@ class Index extends BaseView
                         <div class="row">
                             <div class="col-lg-4 ml-auto">
                                 <div class="img-box sub_img-box">
-                                    <img src="images/client-chocolate.png" alt="">
+                                    <img src="public/assets/client/images/client-chocolate.png" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6 px-0">
@@ -42,7 +42,7 @@ class Index extends BaseView
                                             <div class="carousel-item active">
                                                 <div class="box">
                                                     <div class="img-box">
-                                                        <img src="images/client-img.jpg" alt="">
+                                                        <img src="public/assets/client/images/client-img.jpg" alt="">
                                                     </div>
                                                     <div class="detail-box">
                                                         <h4>
@@ -58,7 +58,7 @@ class Index extends BaseView
                                             <div class="carousel-item">
                                                 <div class="box">
                                                     <div class="img-box">
-                                                        <img src="images/client-img.jpg" alt="">
+                                                        <img src="public/assets/client/images/client-img.jpg" alt="">
                                                     </div>
                                                     <div class="detail-box">
                                                         <h4>
@@ -74,7 +74,7 @@ class Index extends BaseView
                                             <div class="carousel-item">
                                                 <div class="box">
                                                     <div class="img-box">
-                                                        <img src="images/client-img.jpg" alt="">
+                                                        <img src="public/assets/client/images/client-img.jpg" alt="">
                                                     </div>
                                                     <div class="detail-box">
                                                         <h4>
