@@ -59,6 +59,20 @@ Route::put('/admin/categories/{id}', 'App\Controllers\Admin\CategoryController@u
 Route::delete('/admin/categories/{id}', 'App\Controllers\Admin\CategoryController@delete');
 
 
+// Get list data users
+Route::get('/admin/users','App\Controllers\Admin\UserController@index');
+
+// GET /User/create (hiển thị form thêm loại sản phẩm)
+Route::get('/admin/users/create', 'App\Controllers\Admin\UserController@create');
+
+// GET /categories/{id} (lấy chi tiết loại sản phẩm với id cụ thể)
+Route::get('/admin/users/{id}', 'App\Controllers\Admin\UserController@edit');
+
+// PUT /categories/{id} (update loại sản phẩm với id cụ thể)
+Route::put('/admin/users/{id}', 'App\Controllers\Admin\UserController@update');
+
+// DELETE /categories/{id} (delete loại sản phẩm với id cụ thể)
+Route::delete('/admin/users/{id}', 'App\Controllers\Admin\UserController@delete');
 
 
 Route::dispatch($_SERVER['REQUEST_URI']);
