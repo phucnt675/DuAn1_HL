@@ -683,7 +683,7 @@ class Home extends BaseView
                                     <i class="seticon fa fa-times" aria-hidden="true"></i>
                                     <span>Toggle, Closed by default</span>
                                 </a>
-                                <div id="Toggle-2" class="multi-collapse collapse" style="">
+                                <div id="Toggle-2" class="multi-collapse collapse" >
                                     <div class="card-body widget-content">
                                         This box is now open
                                     </div>
