@@ -19,25 +19,8 @@ class CategoryController
     public static function index()
     {
         // giả sử data là mảng dữ liệu lấy được từ database
-        $data = [
-            [
-                'id' => 1,
-                'name' => 'Category 1',
-                'status' => 1
-            ],
-            [
-                'id' => 2,
-                'name' => 'Category 2',
-                'status' => 1
-            ],
-            [
-                'id' => 3,
-                'name' => 'Category 3',
-                'status' => 0
-            ],
-
-        ];
-
+        $category = new Category;
+        $data = $category -> getAllCategory();
         Header::render();
         // hiển thị giao diện danh sách
         Index::render($data);
