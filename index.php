@@ -68,11 +68,24 @@ Route::get('/admin/users/create', 'App\Controllers\Admin\UserController@create')
 // GET /categories/{id} (lấy chi tiết loại sản phẩm với id cụ thể)
 Route::get('/admin/users/{id}', 'App\Controllers\Admin\UserController@edit');
 
-// PUT /categories/{id} (update loại sản phẩm với id cụ thể)
+// PUT /users/{id} (update loại sản phẩm với id cụ thể)
 Route::put('/admin/users/{id}', 'App\Controllers\Admin\UserController@update');
 
-// DELETE /categories/{id} (delete loại sản phẩm với id cụ thể)
+// DELETE /users/{id} (delete loại sản phẩm với id cụ thể)
 Route::delete('/admin/users/{id}', 'App\Controllers\Admin\UserController@delete');
 
+// Products
+Route::get('/admin/products','App\Controllers\Admin\ProductController@index');
+
+Route::get('/admin/products/create', 'App\Controllers\Admin\ProductController@create');
+
+// GET /categories/{id} (lấy chi tiết loại sản phẩm với id cụ thể)
+Route::get('/admin/products/{id}', 'App\Controllers\Admin\ProductController@edit');
+
+// PUT /users/{id} (update loại sản phẩm với id cụ thể)
+Route::put('/admin/products/{id}', 'App\Controllers\Admin\ProductController@update');
+
+// DELETE /users/{id} (delete loại sản phẩm với id cụ thể)
+Route::delete('/admin/products/{id}', 'App\Controllers\Admin\ProductController@delete');
 
 Route::dispatch($_SERVER['REQUEST_URI']);
