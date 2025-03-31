@@ -88,4 +88,15 @@ Route::put('/admin/products/{id}', 'App\Controllers\Admin\ProductController@upda
 // DELETE /users/{id} (delete loại sản phẩm với id cụ thể)
 Route::delete('/admin/products/{id}', 'App\Controllers\Admin\ProductController@delete');
 
+// Orders
+Route::get('/admin/orders', 'App\Controllers\Admin\OrderController@index'); // Danh sách đơn hàng
+Route::get('/admin/orders/create', 'App\Controllers\Admin\OrderController@create'); // Hiển thị form thêm đơn hàng
+Route::post('/admin/orders', 'App\Controllers\Admin\OrderController@store'); // Xử lý thêm đơn hàng
+Route::get('/admin/orders/{id}', 'App\Controllers\Admin\OrderController@show'); // Hiển thị chi tiết đơn hàng
+Route::get('/admin/orders/{id}/edit', 'App\Controllers\Admin\OrderController@edit'); // Hiển thị form sửa đơn hàng
+Route::put('/admin/orders/{id}', 'App\Controllers\Admin\OrderController@update'); // Cập nhật đơn hàng
+Route::delete('/admin/orders/{id}', 'App\Controllers\Admin\OrderController@delete'); // Xóa đơn hàng
+
 Route::dispatch($_SERVER['REQUEST_URI']);
+
+
