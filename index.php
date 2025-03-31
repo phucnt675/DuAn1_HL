@@ -31,8 +31,6 @@ Route::get('/contact','App\Controllers\Client\ContactController@index');
 
 
 
-// trang contact
-Route::get('/contact','App\Controllers\Client\ContactController@index');
 
 
 // *** Admin
