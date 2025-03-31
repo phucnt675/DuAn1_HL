@@ -87,7 +87,7 @@ a:focus {
 
 /*header section*/
 .hero_area {
-  height: calc(100vh - 45px);
+  /* height: calc(100vh - 45px); */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
