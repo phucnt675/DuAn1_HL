@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Client\Pages\ChocolateChocolate;
+namespace App\Views\Client\Pages\Chocolate;
 
 use App\Views\BaseView;
 
@@ -36,7 +36,7 @@ class Index extends BaseView
                         <div class="chocolate_container">
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="images/chocolate1.png" alt="">
+                                    <img src="public/assets/client/images/chocolate1.png" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h6>
@@ -52,7 +52,7 @@ class Index extends BaseView
                             </div>
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="images/chocolate2.png" alt="">
+                                    <img src="public/assets/client/images/chocolate2.png" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h6>
@@ -68,7 +68,7 @@ class Index extends BaseView
                             </div>
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="images/chocolate3.png" alt="">
+                                    <img src="public/assets/client/images/chocolate3.png" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h6>
@@ -84,7 +84,7 @@ class Index extends BaseView
                             </div>
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="images/chocolate1.png" alt="">
+                                    <img src="public/assets/client/images/chocolate1.png" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h6>
@@ -100,7 +100,7 @@ class Index extends BaseView
                             </div>
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="images/chocolate2.png" alt="">
+                                    <img src="public/assets/client/images/chocolate2.png" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h6>
@@ -116,7 +116,7 @@ class Index extends BaseView
                             </div>
                             <div class="box">
                                 <div class="img-box">
-                                    <img src="images/chocolate3.png" alt="">
+                                    <img src="public/assets/client/images/chocolate3.png" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h6>

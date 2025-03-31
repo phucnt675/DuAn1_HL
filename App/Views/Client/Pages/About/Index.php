@@ -34,13 +34,13 @@ class Index extends BaseView
                                         <span>
                                             Read More
                                         </span>
-                                        <img src="images/color-arrow.png" alt="">
+                                        <img src="public/assets/client/images/color-arrow.png" alt="">
                                     </a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="img-box">
-                                    <img src="images/about-img.png" alt="">
+                                    <img src="public/assets/client/images/about-img.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@ class Index extends BaseView
                                     </h4>
                                     <div class="insta_box">
                                         <div class="img-box">
-                                            <img src="images/insta-img.png" alt="">
+                                            <img src="public/assets/client/images/insta-img.png" alt="">
                                         </div>
                                         <p>
                                             long established fact that a reader
@@ -119,7 +119,7 @@ class Index extends BaseView
                                     </div>
                                     <div class="insta_box">
                                         <div class="img-box">
-                                            <img src="images/insta-img.png" alt="">
+                                            <img src="public/assets/client/images/insta-img.png" alt="">
                                         </div>
                                         <p>
                                             long established fact that a reader
