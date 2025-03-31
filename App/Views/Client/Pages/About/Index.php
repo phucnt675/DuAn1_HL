@@ -89,7 +89,7 @@ class Index extends BaseView
                                         <a href="/">
                                             Home
                                         </a>
-                                        <a href="/aboutabout">
+                                        <a href="/about">
                                             About
                                         </a>
                                         <a href="chocolate.html">
@@ -194,6 +194,5 @@ class Index extends BaseView
 
         </body>
 <?php
-    
     }
 }
