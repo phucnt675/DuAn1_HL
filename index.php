@@ -95,6 +95,20 @@ Route::get('/admin/orders/{id}/edit', 'App\Controllers\Admin\OrderController@edi
 Route::put('/admin/orders/{id}', 'App\Controllers\Admin\OrderController@update'); // Cập nhật đơn hàng
 Route::delete('/admin/orders/{id}', 'App\Controllers\Admin\OrderController@delete'); // Xóa đơn hàng
 
+
+//  *** Comments
+// GET /comments (lấy danh sách bình luận)
+Route::get('/admin/comments', 'App\Controllers\Admin\CommentController@index');
+
+// GET /comments/{id} (lấy chi tiết bình luận với id cụ thể)
+Route::get('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@edit');
+
+// PUT /comments/{id} (update bình luận với id cụ thể)
+Route::put('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@update');
+
+// DELETE /comments/{id} (delete bình luận với id cụ thể)
+Route::delete('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@delete');
+
 Route::dispatch($_SERVER['REQUEST_URI']);
 
 
