@@ -85,6 +85,12 @@ class Header extends BaseView
                     <li class="nav-item">
                       <a class="nav-link" href="/contact">Contact Us</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/register">Register</a>
+                    </li>
                   </ul>
                   <div class="quote_btn-container">
                     <form class="form-inline">
