@@ -31,6 +31,11 @@ Route::get('/contact','App\Controllers\Client\ContactController@index');
 
 
 
+<<<<<<< HEAD
+=======
+// trang contact
+Route::get('/contact','App\Controllers\Client\ContactController@index');
+>>>>>>> 903c2f294dfbc2f86d25272ce585e38cc97a01ff
 
 
 // *** Admin

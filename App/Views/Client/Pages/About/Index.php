@@ -90,6 +90,7 @@ class Index extends BaseView
                                             Home
                                         </a>
                                         <a href="/aboutabout">
+>>>>>>>>> Temporary merge branch 2
                                             About
                                         </a>
                                         <a href="chocolate.html">
@@ -194,6 +195,10 @@ class Index extends BaseView
 
         </body>
 <?php
+<<<<<<<<< Temporary merge branch 1
+
+=========
     
+>>>>>>>>> Temporary merge branch 2
     }
 }
