@@ -19,9 +19,13 @@ require_once 'config.php';
 
 // *** Client
 Route::get('/', 'App\Controllers\Client\HomeController@index');
+
 Route::get('/products', 'App\Controllers\Client\ProductController@index');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
+
 Route::get('/login','App\Controllers\Client\AuthController@login');
+Route::post('/login','App\Controllers\Client\AuthController@loginAction');
+
 Route::get('/register','App\Controllers\Client\AuthController@register');
 Route::post('/register','App\Controllers\Client\AuthController@registerAction');
 
@@ -29,8 +33,11 @@ Route::get('/reset-password','App\Controllers\Client\AuthController@resetPasswor
 Route::put('/reset-password','App\Controllers\Client\AuthController@resetPasswordAction');
 
 Route::get('/about','App\Controllers\Client\AboutController@index');
+
 Route::get('/chocolate','App\Controllers\Client\ChocolateController@index');
+
 Route::get('/testimonial','App\Controllers\Client\TestimonialController@index');
+
 Route::get('/contact','App\Controllers\Client\ContactController@index');
 
 

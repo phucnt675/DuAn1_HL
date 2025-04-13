@@ -48,52 +48,53 @@ class Register extends BaseView
             <div class="limiter">
                 <div class="container-login100" style="background-image: url('public/assets/client/Login/images/background.jpg');">
                     <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-                        <form class="login100-form validate-form">
-                            <span class="login100-form-title p-b-49">
-                                Register
-                            </span>
+                        <span class="login100-form-title p-b-49">
+                            Register
+                        </span>
+                        <form class="login100-form validate-form" action="/register" method="post">
+                            <input type="hidden" name="method" value="POST" id="">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Vui lòng nhập Username">
                                         <span class="label-input100">Username</span>
-                                        <input class="input100" type="text" name="username" placeholder="Type your username">
+                                        <input class="input100" type="text" name="username" id="username" placeholder="Nhập Username">
                                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                                     </div>
 
-                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Fullname is reauired">
+                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Vui lòng nhập Họ tên">
                                         <span class="label-input100">Full Name</span>
-                                        <input class="input100" type="text" name="fullname" placeholder="Type your full name">
+                                        <input class="input100" type="name" name="name" id="name" placeholder="Nhập Họ tên">
                                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                                     </div>
 
-                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Email is reauired">
+                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Vui lòng nhập Email">
                                         <span class="label-input100">Email</span>
-                                        <input class="input100" type="text" name="email" placeholder="Type your email">
+                                        <input class="input100" type="email" name="email" id="email" placeholder="Nhập Email">
                                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Phone is reauired">
+                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Vui lòng nhập SĐT">
                                         <span class="label-input100">Phone</span>
-                                        <input class="input100" type="text" name="phone" placeholder="Type your phone">
+                                        <input class="input100" type="phone" name="phone" id="phone" placeholder="Nhập SĐT">
                                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                                     </div>
 
-                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Password is required">
-                                        <span class="label-input100">Password</span>
-                                        <input class="input100" type="password" name="pass" placeholder="Type your password">
+                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Vui lòng nhập Mật khẩu">
+                                        <span class="label-input100">Mật khẩu</span>
+                                        <input class="input100" type="password" name="password" id="password" placeholder="Nhập mật khẩu">
                                         <span class="focus-input100" data-symbol="&#xf190;"></span>
                                     </div>
-                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Confirm Password is required">
-                                        <span class="label-input100">Confirm Password</span>
-                                        <input class="input100" type="password" name="pass_confirm" placeholder="Confirm your password">
+                                    <div class="wrap-input100 validate-input m-b-23" data-validate="Vui lòng nhập lại mật khẩu">
+                                        <span class="label-input100">Nhập lại mật khẩu</span>
+                                        <input class="input100" type="password" name="re_password" id="re_password" placeholder="Nhập lại mật khẩu">
                                         <span class="focus-input100" data-symbol="&#xf190;"></span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="text-right p-t-8 p-b-31">
-                                <a href="#">
+                                <a href="/App/Views/Client/Pages/Auth/ResetPassword.php">
                                     Forgot password?
                                 </a>
                             </div>
@@ -101,7 +102,7 @@ class Register extends BaseView
                             <div class="container-login100-form-btn">
                                 <div class="wrap-login100-form-btn">
                                     <div class="login100-form-bgbtn"></div>
-                                    <button class="login100-form-btn">
+                                    <button type="submit" class="login100-form-btn">
                                         Register
                                     </button>
                                 </div>
@@ -132,7 +133,7 @@ class Register extends BaseView
                                     Or Sign Up Using
                                 </span>
 
-                                <a href="Login.php" class="txt2">
+                                <a href="/login" class="txt2">
                                     Sign In
                                 </a>
                             </div>
