@@ -58,11 +58,15 @@ class Edit extends BaseView
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Mật khẩu*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required>
+                                        <input type="text" class="form-control" id="password" placeholder="Nhập tên loại sản phẩm..." name="password" value="<?= $data['password'] ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="re_password">Nhập lại mật khẩu*</label>
+                                        <input type="password" class="form-control" id="re_password" placeholder="Nhập lại mật khẩu..." name="re_password" >
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Email*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required>
+                                        <input type="text" class="form-control" id="email" placeholder="Nhập tên loại sản phẩm..." name="email" value="<?= $data['email'] ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Tên*</label>
@@ -70,11 +74,11 @@ class Edit extends BaseView
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Số điện thoại*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required>
+                                        <input type="text" class="form-control" id="phone" placeholder="Nhập tên loại sản phẩm..." name="phone" value="<?= $data['phone'] ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Avatar*</label>
-                                        <input type="file" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required>
+                                        <input type="file" class="form-control" id="avatar" placeholder="Nhập tên loại sản phẩm..." name="avatar" value="<?= $data['avatar'] ?>" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái*</label>

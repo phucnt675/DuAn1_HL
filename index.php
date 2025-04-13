@@ -23,6 +23,11 @@ Route::get('/products', 'App\Controllers\Client\ProductController@index');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 Route::get('/login','App\Controllers\Client\AuthController@login');
 Route::get('/register','App\Controllers\Client\AuthController@register');
+Route::post('/register','App\Controllers\Client\AuthController@registerAction');
+
+Route::get('/reset-password','App\Controllers\Client\AuthController@resetPassword');
+Route::put('/reset-password','App\Controllers\Client\AuthController@resetPasswordAction');
+
 Route::get('/about','App\Controllers\Client\AboutController@index');
 Route::get('/chocolate','App\Controllers\Client\ChocolateController@index');
 Route::get('/testimonial','App\Controllers\Client\TestimonialController@index');
@@ -57,19 +62,23 @@ Route::put('/admin/categories/{id}', 'App\Controllers\Admin\CategoryController@u
 Route::delete('/admin/categories/{id}', 'App\Controllers\Admin\CategoryController@delete');
 
 
-// Get list data users
-Route::get('/admin/users','App\Controllers\Admin\UserController@index');
+//  *** Users
+// GET /users (lấy danh sách người dùng)
+Route::get('/admin/users', 'App\Controllers\Admin\UserController@index');
 
-// GET /User/create (hiển thị form thêm loại sản phẩm)
+// GET /users/create (hiển thị form thêm người dùng)
 Route::get('/admin/users/create', 'App\Controllers\Admin\UserController@create');
 
-// GET /categories/{id} (lấy chi tiết loại sản phẩm với id cụ thể)
+// POST /users (tạo mới một người dùng)
+Route::post('/admin/users', 'App\Controllers\Admin\UserController@store');
+
+// GET /users/{id} (lấy chi tiết người dùng với id cụ thể)
 Route::get('/admin/users/{id}', 'App\Controllers\Admin\UserController@edit');
 
-// PUT /users/{id} (update loại sản phẩm với id cụ thể)
+// PUT /users/{id} (update người dùng với id cụ thể)
 Route::put('/admin/users/{id}', 'App\Controllers\Admin\UserController@update');
 
-// DELETE /users/{id} (delete loại sản phẩm với id cụ thể)
+// DELETE /users/{id} (delete người dùng với id cụ thể)
 Route::delete('/admin/users/{id}', 'App\Controllers\Admin\UserController@delete');
 
 // Products

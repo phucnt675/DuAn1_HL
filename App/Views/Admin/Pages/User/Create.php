@@ -44,7 +44,7 @@ class Create extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/categories" method="POST">
+                            <form class="form-horizontal" action="/admin/users" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Thêm người dùng</h4>
                                     <input type="hidden" name="method" id="" value="POST">
@@ -55,6 +55,10 @@ class Create extends BaseView
                                     <div class="form-group">
                                         <label for="password">Mật khẩu*</label>
                                         <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu người dùng..." name="password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="re_password">Nhập lại mật khẩu</label>
+                                        <input type="password" class="form-control" id="re_password" placeholder="Nhập lại mật khẩu..." name="re_password" >
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email*</label>
@@ -73,11 +77,19 @@ class Create extends BaseView
                                         <input type="file" class="form-control" id="avatar" placeholder="Nhập tên người dùng..." name="avatar" required>
                                     </div>
                                     <div class="form-group">
+                                        <label for="role">Quyền*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="role" name="role"  >
+                                            <option value="" selected disabled>Vui lòng chọn...</option>
+                                            <option value="1">Quản trị viên</option>
+                                            <option value="0">Khách hàng</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="status">Trạng thái*</label>
                                         <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" required>
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1">Hiển thị</option>
-                                            <option value="0">Ẩn</option>
+                                            <option value="1">Hoạt động</option>
+                                            <option value="0">Khóa</option>
 
                                         </select>
                                     </div>

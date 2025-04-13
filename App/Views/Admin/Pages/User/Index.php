@@ -73,11 +73,11 @@ class Index extends BaseView
                                                         <td><?= $item['email'] ?></td>
                                                         <td><?= $item['name'] ?></td>
                                                         <td><?= $item['phone'] ?></td>
-                                                        <td><?= $item['avatar'] ?></td>
+                                                        <td><img src="<?= APP_URL?>/public/assets/admin/images/users/<?=$item['avatar']?>" alt="" width="100px"></td>
                                                         <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
                                                             <a href="/admin/users/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/user/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                            <form action="/admin/users/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>

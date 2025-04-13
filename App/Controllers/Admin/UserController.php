@@ -4,148 +4,163 @@ namespace App\Controllers\Admin;
 
 use App\Helpers\NotificationHelper;
 use App\Models\User;
+use App\Validations\UserValidation;
+use App\Views\Admin\Components\Notification;
 use App\Views\Admin\Layouts\Footer;
 use App\Views\Admin\Layouts\Header;
-use App\Views\Admin\Components\Notification;
 use App\Views\Admin\Pages\User\Create;
 use App\Views\Admin\Pages\User\Edit;
 use App\Views\Admin\Pages\User\Index;
 
 class UserController
 {
-
-
     // hiển thị danh sách
     public static function index()
     {
-        // giả sử data là mảng dữ liệu lấy được từ database
-        $data = [
-            [
-                'id' => 1,
-                'username' => 'Phucnt675',
-                'password' => 'phucdeptrai234',
-                'email' => 'phucntpc08600@@gmail.com',
-                'name' => 'Nguyễn Trọng Phúc',
-                'phone' => '0989650276',
-                'avatar' => 'Deptraiqua.pgn',
-                'status' => 1
-            ],
-            [
-                'id' => 2,
-                'username' => 'MinhTeo123',
-                'password' => 'minhdepzai456',
-                'email' => 'minhnguyen@gmail.com',
-                'name' => 'Nguyễn Văn Minh',
-                'phone' => '0912345678',
-                'avatar' => 'MinhPro.pgn',
-                'status' => 1
-            ],
-            [
-                'id' => 3,
-                'username' => 'LanAnh99',
-                'password' => 'lanxinhgai789',
-                'email' => 'lananh@yahoo.com',
-                'name' => 'Trần Thị Lan Anh',
-                'phone' => '0987654321',
-                'avatar' => 'LanXinh.pgn',
-                'status' => 0
-            ],
-            [
-                'id' => 4,
-                'username' => 'DucVIP',
-                'password' => 'ductop1top',
-                'email' => 'ducpro@gmail.com',
-                'name' => 'Lê Văn Đức',
-                'phone' => '0978123456',
-                'avatar' => 'DucVIP.pgn',
-                'status' => 1
-            ],
-            [
-                'id' => 5,
-                'username' => 'HoaCoMay',
-                'password' => 'hoaxinhxan123',
-                'email' => 'hoanguyen@gmail.com',
-                'name' => 'Nguyễn Thị Hoa',
-                'phone' => '0965432198',
-                'avatar' => 'HoaXinh.pgn',
-                'status' => 1
-            ],
-            [
-                'id' => 6,
-                'username' => 'TuanAnhPro',
-                'password' => 'tuananhdeptrai',
-                'email' => 'tuananh@outlook.com',
-                'name' => 'Phạm Tuấn Anh',
-                'phone' => '0932165498',
-                'avatar' => 'TuanPro.pgn',
-                'status' => 0
-            ]
-            
-
-        ];
+        $User = new User();
+        $data = $User->getAllUser();
+        // var_dump($data);
 
         Header::render();
-        // hiển thị giao diện danh sách
+        Notification::render();
+        NotificationHelper::unset();
+        // Hiển thị giao diện danh sách
         Index::render($data);
         Footer::render();
     }
 
-
-    // hiển thị giao diện form thêm
+    // Hiển thị giao diện form thêm
     public static function create()
     {
+        // var_dump($_SESSION);
         Header::render();
-        // hiển thị form thêm
+        Notification::render();
+        NotificationHelper::unset();
+        // Hiển thị giao diện form thêm
         Create::render();
         Footer::render();
     }
-
-
-    // xử lý chức năng thêm
+    // Xử lý chức năng thêm
     public static function store()
     {
-        echo 'Thực hiện lưu vào database';
-    }
+        // Validation các trường dữ liệu
+        $is_valid = UserValidation::create();
+        if (!$is_valid) {
+            NotificationHelper::error('store','Thêm người dùng thất bại');
+            header('location: /admin/users/create');
+            exit();
+        }
+        $username = $_POST['username'];
+        // $status = $_POST['status'];
+        // Kiểm tra tên đăng nhập có tồn tại chưa => không được trùng tên đăng nhập
+        $user = new User();
+        $is_exist = $user->getOneUserByUserName($username);
+        if ($is_exist) {
+            NotificationHelper::error('store','Tên đăng nhập đã tồn tại');
+            header('location: /admin/users/create');
+            exit();
+        }
+        // echo 'oki';
+        // Thực hiện thêm
 
-
-    // hiển thị chi tiết
-    public static function show()
-    {
-    }
-
-
-    // hiển thị giao diện form sửa
-    public static function edit(int $id)
-    {
-        // giả sử data là mảng dữ liệu lấy được từ database
         $data = [
-            'id' => $id,
-            'name' => 'User 1',
-            'status' => 1
+            'username' => $username,
+            'email' => $_POST['email'],
+            'name' => $_POST['name'],
+            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+            'status' => $_POST['status'],
         ];
-        if ($data) {
-            Header::render();
-            // hiển thị form sửa
-            Edit::render($data);
-            Footer::render();
+        $is_upload = UserValidation::uploadAvatar();
+        if($is_upload){
+            $data['avatar'] = $is_upload;
+        }
+
+        $result = $user->createuser($data);
+        if ($result) {
+            NotificationHelper::success('store','Thêm người dùng thành công');
+            header('location: /admin/users/');
         } else {
-            header('location: /admin/user');
+            NotificationHelper::error('store','Thêm người dùng thất bại');
+            header('location: /admin/users/create');
         }
     }
 
+    // Hiển thị chi tiết
 
-    // xử lý chức năng sửa (cập nhật)
-    public static function update(int $id)
+    // hiển thị giao diện form sửa
+
+    public static function edit(int $id)
     {
-        echo 'Thực hiện cập nhật vào database';
-
+        $User = new User();
+        $data = $User->getOneUser($id);
+        if (!$data) {
+            NotificationHelper::error('edit','Không thể xem người dùng');
+            header('location: /admin/users');
+            exit;
+        }
+        Header::render();
+        Notification::render();
+        NotificationHelper::unset();
+        // Hiển thị giao diện form sửa
+        Edit::render($data);
+        Footer::render();
     }
 
+    // Xử lý chức năng sửa (cập nhật)
+    public static function update(int $id)
+    {
+        // Validation các trường dữ liệu
+        $is_valid = UserValidation::edit();
+        if (!$is_valid) {
+            NotificationHelper::error('update','Cập nhật người dùng thất bại');
+            header("location: /admin/users/$id");
+            exit();
+        }
+        $User = new User();
 
-    // thực hiện xoá
+        // Thực hiện cập nhật
+
+        $data = [
+            'email' => $_POST['email'],
+            'name' => $_POST['name'],
+           'status' => $_POST['status'],
+        ];
+        if($_POST['password'] !== '') {
+            $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        }
+        
+        $is_upload = UserValidation::uploadAvatar();
+        if($is_upload){
+            $data['avatar'] = $is_upload;
+        }
+        $result = $User->updateUser($id, $data);
+        if ($result) {
+            NotificationHelper::success('update','Cập nhật người dùng thành công');
+            header('location: /admin/users');
+        } else {
+            NotificationHelper::error('update','Cập nhật người dùng thất bại');
+            header("location: /admin/users/$id");
+        }
+    }
+
+    // Thực hiện xóa
     public static function delete(int $id)
     {
-        echo 'Thực hiện xoá';
+        $User = new User();
+        $result = $User->deleteUser($id);
         
+        // if (!$result) {
+        //     NotificationHelper::error('delete','Không thể xóa người dùng');
+        //     header('location: /admin/users');
+        //     exit();
+        // }
+        // $result = $User->deleteUser($id);
+        if ($result) {
+            NotificationHelper::success('delete','Xóa người dùng thành công');
+            // header('location: /admin/users');
+        } else {
+            NotificationHelper::error('delete','Xóa người dùng thất bại');
+        }
+        header('location: /admin/users');
     }
 }
