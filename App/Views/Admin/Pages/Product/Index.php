@@ -69,7 +69,7 @@ class Index extends BaseView
                                                     <tr>
                                                         <td><?= $item['id'] ?></td>
                                                         <td><?= $item['name'] ?></td>
-                                                        <td><img src="<?=APP_URL?>/public/asset/images/product/<?= $item['image'] ?>" alt="" width="100px"></td>
+                                                        <td><img src="<?=APP_URL?>/public/uploads/products/<?= $item['image'] ?>" alt="" width="70px" height="50px"></td>
                                                         <td><?= $item['description'] ?></td>
                                                         <td><?= $item['price'] ?></td>
                                                         <td><?= $item['quantity'] ?></td>

@@ -95,6 +95,8 @@ Route::delete('/admin/users/{id}', 'App\Controllers\Admin\UserController@delete'
 Route::get('/admin/products','App\Controllers\Admin\ProductController@index');
 
 Route::get('/admin/products/create', 'App\Controllers\Admin\ProductController@create');
+// POST /product (tạo mới một loại sản phẩm)
+Route::post(url: '/admin/products', controllerMethod: 'App\Controllers\Admin\ProductController@store');
 
 // GET /categories/{id} (lấy chi tiết loại sản phẩm với id cụ thể)
 Route::get('/admin/products/{id}', 'App\Controllers\Admin\ProductController@edit');

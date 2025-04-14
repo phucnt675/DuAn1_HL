@@ -84,7 +84,54 @@ class ProductController
     // xử lý chức năng thêm
     public static function store()
     {
-        echo 'Thực hiện lưu vào database';
+        error_log(" Đã vào method store()");
+        // Validation các trường dữ liệu
+        $is_valid = ProductValidation::create();
+    
+        if (!$is_valid) {
+            NotificationHelper::error('store', 'Thêm sản phẩm thất bại');
+            header('location: /admin/products/create');
+            exit;
+        }
+    
+        $name = $_POST['name'];
+    
+        // Kiểm tra tên sản phẩm có tồn tại chưa => không được trùng tên
+        $product = new Product();
+        $is_exist = $product->getOneProductByName($name);
+        if ($is_exist) {
+            NotificationHelper::error('store', 'Tên sản phẩm đã tồn tại');
+            header('location: /admin/products/create');
+            exit;
+        }
+    
+        // Thực hiện thêm sản phẩm
+        $data = [
+            'name' => $name,
+            'price' => $_POST['price'],
+            'description' => $_POST['description'],
+            'status' => $_POST['status'],
+            'quantity' => $_POST['quantity'],
+            'category_id' => $_POST['category_id'],
+        ];
+    
+        // Kiểm tra và upload hình ảnh nếu có
+        $is_upload = ProductValidation::uploadImage();
+        if ($is_upload) {
+            $data['image'] = $is_upload;
+        }
+    
+        // Tạo sản phẩm và lấy ID của sản phẩm mới
+        $product_id = $product->createProduct($data);  // Giả sử createProduct trả về product_id
+    
+        if ($product_id) {
+
+        } else {
+            // Nếu có lỗi khi tạo sản phẩm
+            NotificationHelper::error('store', 'Có lỗi khi thêm sản phẩm');
+            header('location: /admin/products/create');
+            exit;
+        }
     }
 
 
@@ -115,7 +162,57 @@ class ProductController
     // xử lý chức năng sửa (cập nhật)
     public static function update(int $id)
     {
-        echo 'Thực hiện cập nhật vào database';
+        // vailidation các trường dữ liệu
+        $is_valid = ProductValidation::edit();
+
+        if (!$is_valid) {
+            NotificationHelper::error('update', 'Cập nhật sản phẩm thất bại');
+            header("location: /admin/products/$id");
+            exit;
+        }
+        $name = $_POST['name'];
+
+
+        // kiểm tra tên loại có tồn tại chưa=> kh được trùng tên
+        $product = new Product();
+        $is_exist = $product->getOneProductByName($name);
+
+        if ($is_exist) {
+            if ($is_exist['id'] != $id) {
+                NotificationHelper::error('update', 'Tên sản phẩm đã tồn tại');
+                header("location: /admin/products/$id");
+                exit;
+
+            }
+
+        }
+        //Thực hiện Cập nhật
+        $data = [
+            'name' => $name,
+            'price' => $_POST['price'],
+            'description' => $_POST['description'],
+            'status' => $_POST['status'],
+            'quantity' => $_POST['quantity'],
+            'category_id' => $_POST['category_id'],
+
+        ];
+
+        $is_upload = ProductValidation::uploadImage();
+        if ($is_upload) {
+            $data['image'] = $is_upload;
+        }
+
+
+        $result = $product->updateProduct($id, $data);
+        if ($result) {
+            NotificationHelper::success('update', 'Cập nhật sản phẩm thành công');
+            header('location: /admin/products');
+
+        } else {
+            NotificationHelper::error('update', 'Cập nhật sản phẩm thất bại');
+            header("location: /admin/products/$id");
+        }
+
     }
 
 
