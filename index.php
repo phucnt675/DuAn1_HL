@@ -29,6 +29,9 @@ Route::post('/login','App\Controllers\Client\AuthController@loginAction');
 Route::get('/register','App\Controllers\Client\AuthController@register');
 Route::post('/register','App\Controllers\Client\AuthController@registerAction');
 
+Route::get('/forgot-password','App\Controllers\Client\AuthController@forgotPassword');
+Route::post('/forgot-password','App\Controllers\Client\AuthController@forgotPasswordAction');
+
 Route::get('/reset-password','App\Controllers\Client\AuthController@resetPassword');
 Route::put('/reset-password','App\Controllers\Client\AuthController@resetPasswordAction');
 

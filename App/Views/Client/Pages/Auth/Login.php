@@ -91,7 +91,7 @@ class Login extends BaseView
 							</div>
 
 							<div class="text-right p-t-8 p-b-31">
-								<a href="#">
+								<a href="/forgot-password">
 									Forgot password?
 								</a>
 							</div>
@@ -110,7 +110,7 @@ class Login extends BaseView
 									Or Sign Up Using
 								</span>
 							</div>
-
+							
 							<div class="flex-c-m">
 								<a href="#" class="login100-social-item bg1">
 									<i class="fa fa-facebook"></i>
@@ -126,11 +126,7 @@ class Login extends BaseView
 							</div>
 
 							<div class="flex-col-c p-t-155">
-								<span class="txt1 p-b-17">
-									Or Sign Up Using
-								</span>
-
-								<a href="Register.php" class="txt2">
+								<a href="/register" class="txt2">
 									Sign Up
 								</a>
 							</div>

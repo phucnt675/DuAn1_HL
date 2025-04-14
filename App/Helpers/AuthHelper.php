@@ -97,6 +97,14 @@ class AuthHelper{
         }
     }
 
+    public static function forgotPassword($data)
+    {
+        $user = new User();
+
+        $result = $user->getOneUserByUsername($data['username']);
+        return $result;
+    }
+
     public static function resetPassword($data)
     {
         $user = new User();
