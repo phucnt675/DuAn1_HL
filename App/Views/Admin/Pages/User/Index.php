@@ -52,12 +52,12 @@ class Index extends BaseView
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
+                                                    <th>Avatar</th>
                                                     <th>Tên tài khoản</th>
-                                                    <th>Mật Khẩu</th>
+                                                    <!-- <th>Mật Khẩu</th> -->
                                                     <th>Email</th>
                                                     <th>Tên</th>
                                                     <th>Số Điện Thoại</th>
-                                                    <th>Avatar</th>
                                                     <th>Trạng thái</th>
                                                     <th></th>
                                                 </tr>
@@ -68,12 +68,12 @@ class Index extends BaseView
                                                 ?>
                                                     <tr>
                                                         <td><?= $item['id'] ?></td>
+                                                        <td><img src="<?= APP_URL?>/public/uploads/users/<?=$item['avatar']?>" alt="" width="70px" height="50px"></td>
                                                         <td><?= $item['username'] ?></td>
-                                                        <td><?= $item['password'] ?></td>
+                                                        <!-- <td><?= $item['password'] ?></td> -->
                                                         <td><?= $item['email'] ?></td>
                                                         <td><?= $item['name'] ?></td>
                                                         <td><?= $item['phone'] ?></td>
-                                                        <td><img src="<?= APP_URL?>/public/assets/admin/images/users/<?=$item['avatar']?>" alt="" width="100px"></td>
                                                         <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
                                                             <a href="/admin/users/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>

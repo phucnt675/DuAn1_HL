@@ -74,7 +74,7 @@ class Create extends BaseView
                                     </div>
                                     <div class="form-group">
                                         <label for="avatar">Avatar*</label>
-                                        <input type="file" class="form-control" id="avatar" placeholder="Nhập tên người dùng..." name="avatar" required>
+                                        <input type="file" class="form-control" id="avatar" placeholder="Nhập avataravatar người dùng..." name="avatar" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="role">Quyền*</label>
