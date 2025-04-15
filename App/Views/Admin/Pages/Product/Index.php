@@ -73,6 +73,7 @@ class Index extends BaseView
                                                         <td><?= $item['description'] ?></td>
                                                         <td><?= $item['price'] ?></td>
                                                         <td><?= $item['quantity'] ?></td>
+                                                        <td><?= $item['category_id'] ?></td>
                                                         <!-- <td><?= $item[''] ?></td> -->
                                                          <td>Hiên thị</td>
                                                         <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
