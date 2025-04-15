@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Admin\Pages\Category;
+namespace App\Views\Admin\Pages\Comment;
 
 use App\Views\BaseView;
 
@@ -31,14 +31,34 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/categories/<?= $data['id'] ?>" method="POST">
+                            <form class="form-horizontal" action="/admin/comments/<?= $data['id'] ?>" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Sửa loại sản phẩm</h4>
+                                    <h4 class="card-title">Sửa bình luận </h4>
                                     <input type="hidden" name="method" id="" value="PUT">
                                     <input type="text" class="form-control" id="id"  name="id" value="<?= $data['id'] ?>" disabled>
                                     <div class="form-group">
-                                        <label for="name">Tên*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required> 
+                                        <label for="username">Tài khoản*</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="<?= $data['username'] ?>" disabled> 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="product_name">Tên sản phẩm*</label>
+                                        <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $data['product_name'] ?>" disabled> 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="content">Nội dung bình luận*</label>
+                                        <textarea class="form-control" id="content" name="content" rows="3" disabled><?= $data['content'] ?></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="date">Thời gian*</label>
+                                        <input type="text" class="form-control" id="date" name="date" value="<?= $data['date'] ?>" disabled> 
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="rating">Xếp hạng*</label>
+                                        <input type="text" class="form-control" id="rating" name="rating" value="<?= $data['rating'] ?>" disabled> 
                                     </div>
                                     
                                     

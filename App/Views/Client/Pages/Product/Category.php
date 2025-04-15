@@ -2,6 +2,8 @@
 // sản phẩm theo loại
 
 namespace App\Views\Client\Pages\Product;
+use App\Controllers\Client\ProductController;
+use App\Models\Product;
 
 
 use App\Views\BaseView;
@@ -12,85 +14,353 @@ class Category extends BaseView
 {
     public static function render($data = null)
     {
+        ?>
 
-?>
 
-
-        <div class="container mt-5 mb-5">
-            <div class="row">
-                <div class="col-md-3">
-                    <?php
-                    ComponentsCategory::render($data['categories']);
-                    ?>
-                </div>
-                <div class="col-md-9">
-                    <!-- <h1 class="text-center mb-3">Sản phẩm</h1> -->
-
-                    <?php
-                    if (isset($data) && isset($data['products']) && $data && $data['products']) :
-                    ?>
-                        <h1 class="text-center mb-3"><?= $data['products'][0]['category_name'] ?></h1>
-
-                        <div class="row">
-                            <?php
-                            foreach ($data['products'] as $item) :
-                            ?>
-
-                                <div class="col-md-4">
-                                    <div class="card mb-4 shadow-sm">
-                                        <img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" class="card-img-top" alt="" style="width: 100%; display: block;" data-holder-rendered="true">
-                                        <div class="card-body">
-                                            <p class="card-text"><?= $item['name'] ?></p>
-                                            <?php
-                                            if ($item['discount_price'] > 0) :
-                                            ?>
-                                                <p>Giá gốc: <strike><?= number_format($item['price']) ?> đ</strike></p>
-                                                <p>Giá giảm: <strong class="text-danger"><?= number_format($item['price'] - $item['discount_price']) ?> đ</strong></p>
-
-                                            <?php
-                                            else :
-                                            ?>
-                                                <p>Giá tiền: <?= number_format($item['price']) ?> đ</p>
-
-                                            <?php
-                                            endif;
-                                            ?>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <a href="/products/<?= $item['id'] ?>" type="button" class="btn btn-sm btn-outline-info">Chi tiết</a>
-                                                    <form action="#" method="post">
-                                                        <input type="hidden" name="method" id="" value="POST">
-                                                        <button type="submit" class="btn btn-sm btn-outline-success">Thêm vào giỏ hàng</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php
-                            endforeach;
-
-                            ?>
+         <!-- Hero Section Begin -->
+         <section class="hero hero-normal">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="hero__categories">
+                            <div class="hero__categories__all">
+                                <i class="fa fa-bars"></i>
+                                <span>All departments</span>
+                            </div>
+                            <ul>
+                                <li><a href="#">Fresh Meat</a></li>
+                                <li><a href="#">Vegetables</a></li>
+                                <li><a href="#">Fruit & Nut Gifts</a></li>
+                                <li><a href="#">Fresh Berries</a></li>
+                                <li><a href="#">Ocean Foods</a></li>
+                                <li><a href="#">Butter & Eggs</a></li>
+                                <li><a href="#">Fastfood</a></li>
+                                <li><a href="#">Fresh Onion</a></li>
+                                <li><a href="#">Papayaya & Crisps</a></li>
+                                <li><a href="#">Oatmeal</a></li>
+                                <li><a href="#">Fresh Bananas</a></li>
+                            </ul>
                         </div>
-                    <?php
-                    else :
-                    ?>
-                        <h3 class="text-center text-danger">Không có sản phẩm</h3>
-
-                    <?php
-                    endif;
-                    ?>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="hero__search">
+                            <div class="hero__search__form">
+                                <form action="#">
+                                    <div class="hero__search__categories">
+                                        Tất cả loại sản phẩm
+                                        <span class="arrow_carrot-down"></span>
+                                    </div>
+                                    <input type="text" placeholder="Bạn cần gì?">
+                                    <button type="submit" class="site-btn">Tìm Kiếm</button>
+                                </form>
+                            </div>
+                            <div class="hero__search__phone">
+                                <div class="hero__search__phone__icon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div class="hero__search__phone__text">
+                                    <h5>+65 11.188.888</h5>
+                                    <span>support 24/7 time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+        <!-- Hero Section End -->
 
-
-
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/public/assets/client/img/banner/banner-products1.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>XaLanh Fashion</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Trang Chủ</a>
+                            <span>Cửa Hàng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Product Section Begin -->
+<!-- Product Section Begin -->
+<section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                            <h4>Danh Mục Sản Phẩm</h4>
+                            <?php
+                    ComponentsCategory::render($data['categories']);
+                  
+                       ?>
+                           
+                        </div>
+                        <div class="sidebar__item">
+                            <h4>Giá</h4>
+                            <div class="price-range-wrap">
+                                <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                    data-min="10" data-max="540">
+                                    <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                </div>
+                                <div class="range-slider">
+                                    <div class="price-input">
+                                        <input type="text" id="minamount">
+                                        <input type="text" id="maxamount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar__item sidebar__item__color--option">
+                                <h4>Màu Sản Phẩm</h4>
+                                <div class="sidebar__item__color sidebar__item__color--white">
+                                    <label for="white">
+                                        Trắng
+                                        <input type="radio" id="white" name="color" value="Màu trắng"
+                                            >
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__color sidebar__item__color--gray">
+                                    <label for="gray">
+                                        Xám
+                                        <input type="radio" id="gray" value="Màu xám " name="color"
+                                           >
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__color sidebar__item__color--red">
+                                    <label for="red">
+                                        Đỏ
+                                        <input type="radio" id="red">
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__color sidebar__item__color--black">
+                                    <label for="black">
+                                        Đen
+                                        <input type="radio" name="color" id="black" value="Màu đen"
+                                            >
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__color sidebar__item__color--blue">
+                                    <label for="blue">
+                                        Xanh
+                                        <input type="radio" id="blue">
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__color sidebar__item__color--green">
+                                    <label for="green">
+                                        Xanh lá
+                                        <input type="radio" id="green">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="sidebar__item">
+                                <h4>Chất Liệu</h4>
+                                <div class="sidebar__item__size">
+                                    <label for="large">
+                                        Vải lụa
+                                        <input type="radio" name="material" id="large" value="Vải lụa"
+                                          >
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__size">
+                                    <label for="medium">
+                                        Vải len
+                                        <input type="radio" name="material" id="medium" value="Vải len"
+                                            onclick="filterByMaterial('Vải len')">
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__size">
+                                    <label for="small">
+                                        Da
+                                        <input type="radio" id="small">
+                                    </label>
+                                </div>
+                                <div class="sidebar__item__size">
+                                    <label for="tiny">
+                                        Tiny
+                                        <input type="radio" id="tiny">
+                                    </label>
+                                </div>
+                            </div>
+                        <div class="sidebar__item">
+                            <div class="latest-product__text">
+                                <h4>Sản Phẩm Mới</h4>
+                                <div class="latest-product__slider owl-carousel">
+                                    <div class="latest-prdouct__slider__item">
+                                    <?php
+                                    foreach ($data['getAllNew'] as $item):
+                                        ?>
+                                        <a href="/products/<?= $item['id'] ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?= $item['name']; ?></h6>
+                                                <span><?= number_format($item['price']) ?> đ</span>
+                                            </div>
+                                        </a>
+                                        <?php endforeach;
+
+                                    ?>
+                                      
+                                        
+                                    </div>
+                                    <div class="latest-prdouct__slider__item">
+                                    <?php
+                                    foreach ($data['getAllNew'] as $item):
+                                        ?>
+                                        <a href="/products/<?= $item['id'] ?>" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="">
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6><?= $item['name']; ?></h6>
+                                                <span><?= number_format($item['price']) ?> đ</span>
+                                            </div>
+                                        </a>
+                                        <?php endforeach;
+
+                                    ?>
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-7">
+                    <div class="product__discount">
+                        <div class="section-title product__discount__title">
+                            <h2>Sản Phẩm Khuyến Mãi</h2>
+                        </div>
+                        <div class="row">
+                            <div class="product__discount__slider owl-carousel">
+                                
+                            <?php
+
+foreach ($data['getAllSale'] as $product):
+    $discount = 0;
+    if ($product['price'] > 0 && $product['discount_price'] > 0) {
+        $discount = round((($product['price'] - $product['discount_price']) / $product['price']) * 100);
+    }
+    ?>
+    <div class="col-lg-4">
+        <div class="product__discount__item">
+            <div class="product__discount__item__pic set-bg"
+                data-setbg="<?= APP_URL ?>/public/uploads/products/<?= $product['image'] ?>">
+                <div class="product__discount__percent">-<?= $discount ?>%</div>
+                <ul class="product__item__pic__hover">
+                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                    <li><a href="/products/<?= $item['id'] ?>"><i class="fa fa-retweet"></i></a></li>
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                </ul>
+            </div>
+            <div class="product__discount__item__text">
+                <span><?= $product['category_name']; ?></span>
+                <h5><a href="/products/<?= $product['id'] ?>"><?= $product['name']; ?></a></h5>
+
+                <div class="product__item__price"><?= number_format($product['price']) ?> đ
+                    <span><?= number_format($product['discount_price']) ?> đ </span></div>
+            </div>
+        </div>
+    </div>
+<?php endforeach;
+
+?>
+                                
+                               
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter__item">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-5">
+                                <div class="filter__sort">
+                                    <span>Sắp Xếp</span>
+                                    <select>
+                                        <option value="0">Mặc Định</option>
+                                        <option value="0">Default</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="filter__found">
+                                    <h6><span><?= $data['countTotal'] ?></span> Sản Phẩm</h6>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3">
+                                <div class="filter__option">
+                                    <span class="icon_grid-2x2"></span>
+                                    <span class="icon_ul"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                    <?php
+                            foreach ($data['products'] as $item) :
+                            ?>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="<?= APP_URL?>/public/uploads/products/<?=$item['image']?>" alt="" >
+                                    <ul class="product__item__pic__hover">
+                                        <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                        <li><a href="/products/<?= $item['id'] ?>"><i class="fa fa-retweet"></i></a></li>
+                                        <li><a href="/cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="/products/<?= $item['id'] ?>"><?=$item['name'];?></a></h6>
+                                    <h5><?= number_format($item['price'])?>đ</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach;
+
+?>
+                        
+                    </div>
+                    <div class="product__pagination">
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+
+    
+
+   
 
 
 
 <?php
 
     }
-}
+
+
+
+
+    
+
+
+
+    }
+

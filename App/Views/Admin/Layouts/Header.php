@@ -2,186 +2,410 @@
 
 namespace App\Views\Admin\Layouts;
 
+use App\Helpers\AuthHelper;
 use App\Views\BaseView;
+use App\Models\User;
 
 class Header extends BaseView
 {
     public static function render($data = null)
     {
 
+        $is_login = AuthHelper::checkLogin();
+        $usersModel = new User();
+        $user = $usersModel->getOneUser($is_login);
+
+        $user = $_SESSION['users'] ?? null;
+
+        if (isset($_COOKIE['users']) && !$user) {
+            $user = json_decode($_COOKIE['users'], true);
+            $_SESSION['users'] = $user;
+        }
+
 ?>
         <!DOCTYPE html>
-        <html dir="ltr" lang="en">
+        <html lang="en">
 
         <head>
+
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <!-- Tell the browser to be responsive to screen width -->
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Admin</title>
-            <!-- Favicon icon -->
-            <link rel="icon" type="image/png" sizes="16x16" href="<?= APP_URL ?>/public/assets/admin/images/favicon.png">
-            <!-- CSS -->
-            <link href="<?= APP_URL ?>/public/assets/admin/libs/flot/css/float-chart.css" rel="stylesheet">
-            <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/extra-libs/multicheck/multicheck.css">
-            <link href="<?= APP_URL ?>/public/assets/admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="">
 
-            <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/select2/dist/css/select2.min.css">
-            <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/jquery-minicolors/jquery.minicolors.css">
-            <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-            <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/quill/dist/quill.snow.css">
+            <title>SB Admin 2 - Dashboard</title>
 
-            <!-- Custom CSS -->
-            <link href="<?= APP_URL ?>/public/assets/admin/dist/css/style.min.css" rel="stylesheet">
+            <!-- Custom fonts for this template-->
+            <link href="/public/assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+            <link
+                href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+                rel="stylesheet">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <!-- Custom styles for this template-->
+            <link href="/public/assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+            <!-- Custom styles for this page -->
+            <link href="/public/assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 
         </head>
 
-        <body>
+        <body id="page-top">
 
-            <!-- ============================================================== -->
-            <!-- Main wrapper - style you can find in pages.scss -->
-            <!-- ============================================================== -->
-            <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-                <!-- ============================================================== -->
-                <!-- Topbar header - style you can find in pages.scss -->
-                <!-- ============================================================== -->
-                <header class="topbar" data-navbarbg="skin5">
-                    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                        <div class="navbar-header" data-logobg="skin5">
+            <!-- Page Wrapper -->
+            <div id="wrapper">
 
-                            <!-- ============================================================== -->
-                            <!-- Logo -->
-                            <!-- ============================================================== -->
-                            <a class="navbar-brand" href="/admin">
-                                <!-- Logo icon -->
-                                <b class="logo-icon ps-2">
-                                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                    <!-- Dark Logo icon -->
-                                    <img src="<?= APP_URL ?>/public/assets/admin/images/logo-icon.png" alt="homepage" class="light-logo" />
+                <!-- Sidebar -->
+                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                                </b>
-                                <!--End Logo icon -->
-                                <!-- Logo text -->
-                                <span class="logo-text">
-                                    <!-- dark Logo text -->
-                                    <img src="<?= APP_URL ?>/public/assets/admin/images/logo-text.png" alt="homepage" class="light-logo" />
-
-                                </span>
-                                <!-- Logo icon -->
-                                <!-- <b class="logo-icon"> -->
-                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                <!-- Dark Logo icon -->
-                                <!-- <img src="<?= APP_URL ?>/public/assets/admin/images/logo-text.png" alt="homepage" class="light-logo" /> -->
-
-                                <!-- </b> -->
-                                <!--End Logo icon -->
-                            </a>
-                            <!-- ============================================================== -->
-                            <!-- End Logo -->
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- Toggle which is visible on mobile only -->
-                            <!-- ============================================================== -->
-                            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+                        <div class="sidebar-brand-icon rotate-n-15">
+                            <i class="fas fa-laugh-wink"></i>
                         </div>
-                        <!-- ============================================================== -->
-                        <!-- End Logo -->
-                        <!-- ============================================================== -->
-                        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                            <!-- ============================================================== -->
-                            <!-- toggle and nav items -->
-                            <!-- ============================================================== -->
-                            <ul class="navbar-nav float-start me-auto">
-                                <li class="nav-item d-none d-lg-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                                <!-- ============================================================== -->
-                            </ul>
-                            <!-- ============================================================== -->
-                            <!-- Right side toggle and nav items -->
-                            <!-- ============================================================== -->
-                            <ul class="navbar-nav float-end">                
-                                <!-- ============================================================== -->
-                                <!-- User profile and search -->
-                                <!-- ============================================================== -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="<?= APP_URL ?>/public/assets/admin/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
+                        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                    </a>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0">
+
+                    <!-- Nav Item - Dashboard -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/admin">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Bảng điều khiển</span></a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Giao diện
+                    </div>
+
+                    <!-- Nav Item - Pages loại sản phẩm -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="/admin/categories" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Loại sản phẩm</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Loại sản phẩm:</h6>
+                                <a class="collapse-item" href="/admin/categories">Danh sách loại sản phẩm</a>
+                                <a class="collapse-item" href="/admin/categories/create">Thêm loại sản phẩm</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - sản phẩm -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="/admin/products" data-toggle="collapse" data-target="#collapsePages"
+                            aria-expanded="true" aria-controls="collapsePages">
+                            <i class="fas fa-fw fa-folder"></i>
+                            <span>Sản phẩm</span>
+                        </a>
+                        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Sản phẩm:</h6>
+                                <a class="collapse-item" href="/admin/products">Danh sách sản phẩm</a>
+                                <a class="collapse-item" href="/admin/products/create">Thêm sản phẩm</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - người dùng -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                            aria-expanded="true" aria-controls="collapseUtilities">
+                            <i class="fas fa-fw fa-wrench"></i>
+                            <span>Người dùng</span>
+                        </a>
+                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Người dùng:</h6>
+                                <a class="collapse-item" href="/admin/users">Danh sách người dùng</a>
+                                <a class="collapse-item" href="/admin/users/create">Thêm người dùng</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - Quản lý đơn hàng -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="/admin/orders" data-toggle="collapse" data-target="#collapseOrders"
+                            aria-expanded="true" aria-controls="collapseOrders">
+                            <i class="fas fa-fw fa-shopping-cart"></i>
+                            <span>Quản lý đơn hàng</span>
+                        </a>
+                        <div id="collapseOrders" class="collapse" aria-labelledby="headingOrders" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Đơn hàng:</h6>
+                                <a class="collapse-item" href="/admin/orders">Danh sách đơn hàng</a>
+                                <a class="collapse-item" href="/admin/orders/create">Tạo đơn hàng</a>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <!-- -- Nav Item - bình luận -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/comments">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Bình luận</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/comments">
+                            <i class="fas fa-fw fa-trash"></i>
+                            <span>Thùng rác</span></a>
+                    </li>
+
+
+
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+
+
+
+
+                </ul>
+                <!-- End of Sidebar -->
+
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+
+                    <!-- Main Content -->
+                    <div id="content">
+
+                        <!-- Topbar -->
+                        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                            <!-- Sidebar Toggle (Topbar) -->
+                            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <!-- Topbar Search -->
+                            <form
+                                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..."
+                                        aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!-- Topbar Navbar -->
+                            <ul class="navbar-nav ml-auto">
+
+                                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                                <li class="nav-item dropdown no-arrow d-sm-none">
+                                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-search fa-fw"></i>
                                     </a>
-                                    <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-
-                                        <a class="dropdown-item" href=""><i class="fa fa-power-off me-1 ms-1"></i> Đăng xuất</a>
-                                    </ul>
-                                </li>
-                                <!-- ============================================================== -->
-                                <!-- User profile and search -->
-                                <!-- ============================================================== -->
-                            </ul>
-                        </div>
-                    </nav>
-                </header>
-                <!-- ============================================================== -->
-                <!-- End Topbar header -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Left Sidebar - style you can find in sidebar.scss  -->
-                <!-- ============================================================== -->
-                <aside class="left-sidebar" data-sidebarbg="skin5">
-                    <!-- Sidebar scroll-->
-                    <div class="scroll-sidebar">
-                        <!-- Sidebar navigation-->
-                        <nav class="sidebar-nav">
-                            <ul id="sidebarnav" class="pt-4">
-                                <li class="sidebar-item">
-                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Thống kê</span></a>
+                                    <!-- Dropdown - Messages -->
+                                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                        aria-labelledby="searchDropdown">
+                                        <form class="form-inline mr-auto w-100 navbar-search">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-light border-0 small"
+                                                    placeholder="Search for..." aria-label="Search"
+                                                    aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </li>
 
-                                <li class="sidebar-item">
-                                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Loại sản phẩm </span></a>
-                                    <ul aria-expanded="false" class="collapse  first-level">
-                                        <li class="sidebar-item">
-                                            <a href="/admin/categories" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Danh sách </span></a>
-                                        </li>
-                                        <li class="sidebar-item">
-                                            <a href="/admin/categories/create" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Thêm mới </span></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Sản phẩm </span></a>
-                                    <ul aria-expanded="false" class="collapse  first-level">
-                                        <li class="sidebar-item">
-                                            <a href="/admin/products" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Danh sách </span></a>
-                                        </li>
-                                        <li class="sidebar-item">
-                                            <a href="/admin/products/create" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Thêm mới </span></a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Bình luận </span></a>
-                                    <ul aria-expanded="false" class="collapse  first-level">
-                                        <li class="sidebar-item">
-                                            <a href="/admin/comments" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Danh sách </span></a>
-                                        </li>
-                                    </ul>
+                                <!-- Nav Item - Alerts -->
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bell fa-fw"></i>
+                                        <!-- Counter - Alerts -->
+                                        <span class="badge badge-danger badge-counter">3+</span>
+                                    </a>
+                                    <!-- Dropdown - Alerts -->
+                                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="alertsDropdown">
+                                        <h6 class="dropdown-header">
+                                            Alerts Center
+                                        </h6>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-primary">
+                                                    <i class="fas fa-file-alt text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">December 12, 2019</div>
+                                                <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-success">
+                                                    <i class="fas fa-donate text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">December 7, 2019</div>
+                                                $290.29 has been deposited into your account!
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-warning">
+                                                    <i class="fas fa-exclamation-triangle text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">December 2, 2019</div>
+                                                Spending Alert: We've noticed unusually high spending for your account.
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                    </div>
                                 </li>
 
-                                <li class="sidebar-item p-3">
-                                    <a href="https://github.com/wrappixel/matrix-admin-lite" target="_blank" class="w-100 btn btn-cyan d-flex align-items-center text-white"><i class="mdi mdi-cloud-download font-20 me-2"></i>Theme</a>
+                                <!-- Nav Item - Messages -->
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-envelope fa-fw"></i>
+                                        <!-- Counter - Messages -->
+                                        <span class="badge badge-danger badge-counter">7</span>
+                                    </a>
+                                    <!-- Dropdown - Messages -->
+                                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="messagesDropdown">
+                                        <h6 class="dropdown-header">
+                                            Message Center
+                                        </h6>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="dropdown-list-image mr-3">
+                                                <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                                <div class="status-indicator bg-success"></div>
+                                            </div>
+                                            <div class="font-weight-bold">
+                                                <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                                    problem I've been having.</div>
+                                                <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="dropdown-list-image mr-3">
+                                                <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                                <div class="status-indicator"></div>
+                                            </div>
+                                            <div>
+                                                <div class="text-truncate">I have the photos that you ordered last month, how
+                                                    would you like them sent to you?</div>
+                                                <div class="small text-gray-500">Jae Chun · 1d</div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="dropdown-list-image mr-3">
+                                                <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                                <div class="status-indicator bg-warning"></div>
+                                            </div>
+                                            <div>
+                                                <div class="text-truncate">Last month's report looks great, I am very happy with
+                                                    the progress so far, keep up the good work!</div>
+                                                <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="dropdown-list-image mr-3">
+                                                <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                                    alt="...">
+                                                <div class="status-indicator bg-success"></div>
+                                            </div>
+                                            <div>
+                                                <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                                    told me that people say this to all dogs, even if they aren't good...</div>
+                                                <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                    </div>
                                 </li>
+
+                                <div class="topbar-divider d-none d-sm-block"></div>
+
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item dropdown no-arrow">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                            <div>
+                                                <?php if (!empty($user)): ?>
+                                                    Xin chào <?= htmlspecialchars($user['name']) ?>
+                                                <?php else: ?>
+                                                    Khách
+                                                <?php endif; ?>
+                                            </div>
+                                        </span>
+                                        <?php if ($is_login): ?>
+                                            <!-- Lấy ảnh từ biến $user -->
+                                            <img src="<?= APP_URL ?>/public/assets/admin/img/users/<?= $user['avatar'] ?>" alt=""
+                                                width="27px">
+                                        <?php else: ?>
+                                            <img src="/public/assets/client/img/user1.png" alt="" width="20px">
+                                        <?php endif; ?>
+                                    </a>
+                                    <!-- Dropdown - User Information -->
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                        aria-labelledby="userDropdown">
+                                        <?php if (!empty($user)): ?>
+                                            <a class="dropdown-item" href="/admin/profile/<?= $_SESSION['users']['id'] ?>">
+                                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Trang cá nhân
+                                            </a>
+                                        <?php else: ?>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Trang cá nhân
+                                            </a>
+                                        <?php endif; ?>
+
+                                        <!-- <a class="dropdown-item" href="#">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Settings
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Activity Log
+                                        </a> -->
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/admin/logout">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            Đăng xuất
+                                        </a>
+                                    </div>
+                                </li>
+
                             </ul>
                         </nav>
-                        <!-- End Sidebar navigation -->
-                    </div>
-                    <!-- End Sidebar scroll-->
-                </aside>
-                <!-- ============================================================== -->
-                <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
+                        <!-- End of Topbar -->
+                <?php
 
-        <?php
+            }
+        }
 
-    }
-}
-
-        ?>
+                ?>
