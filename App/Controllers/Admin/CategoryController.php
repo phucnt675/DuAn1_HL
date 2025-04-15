@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers\Admin;
-
+use App\Validations\CategoryValidation;
 use App\Helpers\NotificationHelper;
 use App\Models\Category;
 use App\Views\Admin\Layouts\Footer;
@@ -10,6 +10,7 @@ use App\Views\Admin\Components\Notification;
 use App\Views\Admin\Pages\Category\Create;
 use App\Views\Admin\Pages\Category\Edit;
 use App\Views\Admin\Pages\Category\Index;
+use App\Views\Client\Components\Notification as ComponentsNotification;
 
 class CategoryController
 {
@@ -18,11 +19,12 @@ class CategoryController
     // hiển thị danh sách
     public static function index()
     {
-        // giả sử data là mảng dữ liệu lấy được từ database
-        $category = new Category;
-        $data = $category -> getAllCategory();
+
+        $category = new Category();
+        $data = $category-> getAllCategory();
+
         Header::render();
-        // hiển thị giao diện danh sách
+       
         Index::render($data);
         Footer::render();
     }
@@ -32,6 +34,8 @@ class CategoryController
     public static function create()
     {
         Header::render();
+        Notification::render();
+        NotificationHelper::unset();
         // hiển thị form thêm
         Create::render();
         Footer::render();
@@ -41,7 +45,41 @@ class CategoryController
     // xử lý chức năng thêm
     public static function store()
     {
-        echo 'Thực hiện lưu vào database';
+        $is_valid =CategoryValidation::create();
+        
+        if (!$is_valid){
+            NotificationHelper::error('store',message: 'Thêm loại sản phẩm thất bại');
+            header('location: /admin/categories/create');
+            exit;
+        }
+        $name=$_POST['name'];
+        $status=$_POST['status'];
+
+
+       // kiểm tra tên loại có tồn tại chưa=> kh được trùng tên
+      $category=new Category();
+       $is_exist=$category->getOneCategoryByName($name);
+       if($is_exist){
+        NotificationHelper::error('store','Tên loại sản phẩm đã tồn tại');
+            header('location: /admin/categories/create');
+            exit;
+       }
+       //Thực hiện thêm
+       $data=[
+        'name'=>$name,
+        'status'=>$status,
+
+       ];
+       $result=$category->createCategory($data);
+       if($result){
+        NotificationHelper::success('store','Thêm loại sản phẩm thành công');
+            header('location: /admin/categories');
+            
+       }
+       else{
+        NotificationHelper::error('store','Thêm loại sản phẩm thất bại');
+            header('location: /admin/categories/create');
+       }
     }
 
 
@@ -55,26 +93,63 @@ class CategoryController
     public static function edit(int $id)
     {
         // giả sử data là mảng dữ liệu lấy được từ database
-        $data = [
-            'id' => $id,
-            'name' => 'Category 1',
-            'status' => 1
-        ];
-        if ($data) {
-            Header::render();
-            // hiển thị form sửa
-            Edit::render($data);
-            Footer::render();
-        } else {
+        $category=new Category();
+        $data = $category->getOneCategory($id);
+        if (!$data) {
+            NotificationHelper::error('edit','Không thể xem được loại sản phẩm này');
             header('location: /admin/categories');
+            exit;
         }
+        Header::render();
+        Notification::render();
+        NotificationHelper::unset();
+        // hiển thị form sửa
+        Edit::render($data);
+        Footer::render();
     }
 
 
     // xử lý chức năng sửa (cập nhật)
     public static function update(int $id)
     {
-        echo 'Thực hiện cập nhật vào database';
+        $is_valid =CategoryValidation::edit();
+        
+        if (!$is_valid){
+            NotificationHelper::error('update','Cập nhật loại sản phẩm thất bại');
+            header("location: /admin/categories/$id");
+            exit;
+        }
+        $name=$_POST['name'];
+        $status=$_POST['status'];
+
+       // kiểm tra tên loại có tồn tại chưa=> kh được trùng tên
+      $category=new Category();
+       $is_exist=$category->getOneCategoryByName($name);
+
+       if($is_exist){
+        if($is_exist['id']!=$id){
+            NotificationHelper::error('update','Tên loại sản phẩm đã tồn tại');
+            header("location: /admin/categories/$id");
+            exit;
+
+        }
+        
+       }
+       //Thực hiện Cập nhật
+       $data=[
+        'name'=>$name,
+        'status'=>$status
+       ];
+       $result=$category->updateCategory($id,$data);
+       if($result){
+        NotificationHelper::success('update','cập nhật loại sản phẩm thành công');
+            header('location: /admin/categories');
+            
+       }
+       else{
+        NotificationHelper::error('update','Cập nhật loại sản phẩm thất bại');
+            header("location: /admin/categories/$id");
+       }
 
     }
 
@@ -82,7 +157,17 @@ class CategoryController
     // thực hiện xoá
     public static function delete(int $id)
     {
-        echo 'Thực hiện xoá';
-        
+       
+        $category =new Category();
+        $result = $category->deleteCategory($id);
+        if ($result) {
+            NotificationHelper::success('delete','Xóa loại sản phẩm thành công');
+            
+        }
+        else{
+            NotificationHelper::error('delete','Xóa loại sản phẩm thất bại');
+           
+        }
+        header('location: /admin/categories');
     }
 }
