@@ -197,7 +197,7 @@ class Index extends BaseView
                                     </h4>
                                     <div class="insta_box">
                                         <div class="img-box">
-                                            <img src="images/insta-img.png" alt="">
+                                            <img src="public/assets/client/images/insta-img.png" alt="">
                                         </div>
                                         <p>
                                             long established fact that a reader
@@ -205,7 +205,7 @@ class Index extends BaseView
                                     </div>
                                     <div class="insta_box">
                                         <div class="img-box">
-                                            <img src="images/insta-img.png" alt="">
+                                            <img src="public/assets/client/images/insta-img.png" alt="">
                                         </div>
                                         <p>
                                             long established fact that a reader
