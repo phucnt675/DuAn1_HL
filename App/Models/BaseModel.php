@@ -129,4 +129,8 @@ abstract class BaseModel implements CrudInterface
         $result = $this->_conn->MySQLi()->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    
+
+    
 }
