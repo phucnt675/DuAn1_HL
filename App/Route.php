@@ -6,31 +6,31 @@ class Route
 {
 
     private static $routes = [];
-    public static function get($url, $controllerMethod)
+    public static function get($url, $controllerMethod): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET')
             self::$routes[$url] = $controllerMethod;
     }
-    public static function post($url, $controllerMethod)
+    public static function post($url, $controllerMethod): void
     {
         if (isset($_POST['method']))
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] == 'POST')
                 self::$routes[$url] = $controllerMethod;
     }
-    public static function put($url, $controllerMethod)
+    public static function put($url, $controllerMethod): void
     {
         if (isset($_POST['method']))
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] == 'PUT')
                 self::$routes[$url] = $controllerMethod;
     }
-    public static function delete($url, $controllerMethod)
+    public static function delete($url, $controllerMethod): void
     {
         if (isset($_POST['method']))
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] == 'DELETE')
                 self::$routes[$url] = $controllerMethod;
     }
 
-    public static function dispatch($uri)
+    public static function dispatch($uri): void
     {
         // echo "<pre>";
 
@@ -38,7 +38,7 @@ class Route
 
         if ($uri != '/') {
             // tách thành mảng nếu có ? trên URL
-            $uri = explode('?', $uri);
+            $uri = explode(separator: '?', string: $uri);
 
             // var_dump($uri);
             // var_dump($uri);
@@ -49,31 +49,31 @@ class Route
             $uri = $uri[0];
 
             // cắt dấu / nếu xuất hiện ở cuối uri
-            $uri = rtrim($uri, '/');
+            $uri = rtrim(string: $uri, characters: '/');
 
             // đảo ngược uri $reversedUri = 1/seirogetac/nimda/
-            $reversedUri = strrev($uri);
+            $reversedUri = strrev(string: $uri);
             // var_dump($reversedUri);
             // tách url thành mảng 2 phần tử cách nhau bằng dấu /
-            $parts = explode('/', $reversedUri, 2);
+            $parts = explode(separator: '/', string: $reversedUri, limit: 2);
 
             // đảo ngược để lấy từng phần
             // phần 1: /admin/categories/
-            $part1 = strrev($parts[1]);
+            $part1 = strrev(string: $parts[1]);
             // phần 2: 1 => ép thành kiểu int
-            $part2 = (int) strrev($parts[0]);
+            $part2 = (int) strrev(string: $parts[0]);
         }
 
 
         // kiểm tra $uri có trùng với route đã định nghĩa ko ?
-        if (array_key_exists($uri, self::$routes)) {
+        if (array_key_exists(key: $uri, array: self::$routes)) {
             // Vd: GET /categories (lấy danh sách loại sản phẩm) => Route::get("/categories", "App\Controllers\Client\CategoryController@index");
             // $uri = /categories
             // self::$routes[$uri] = self::$routes['/categories'] = App\Controllers\Client\CategoryController@index
             $controllerMethod = self::$routes[$uri];
 
             // dùng list để gán giá trị cho biến $controller, $method khi tách $controllerMethod thành 2 phần
-            list($controller, $method) = explode("@", $controllerMethod);
+            list($controller, $method) = explode(separator: "@", string: $controllerMethod);
 
             // Vd: $controller = App\Controllers\Client\CategoryController
             $controllerInstance = new $controller();
@@ -82,7 +82,7 @@ class Route
             $controllerMethod = $controllerInstance->$method();
         }
         // kiểm tra $uri có trùng với route đã định nghĩa với id được truyền vào ? và $part2 sau khi ép kiểu int có null ko ?
-        elseif (array_key_exists($part1 . '/{id}', self::$routes) && $part2) {
+        elseif (array_key_exists(key: $part1 . '/{id}', array: self::$routes) && $part2) {
             // Vd: GET /categories/{id} (lấy chi tiết loại sản phẩm với category_id cụ thể) Route::get("/categories/{id}", "App\Controllers\Client\CategoryController@edit");
             // Vd: Truy cập: 127.0.0.1:8080/categories/1 
             // $uri = /categories/1 
@@ -95,7 +95,7 @@ class Route
             $controllerMethod = self::$routes[$part1 . '/{id}'];
 
             // dùng list để gán giá trị cho biến $controller, $method khi tách $controllerMethod thành 2 phần
-            list($controller, $method) = explode("@", $controllerMethod);
+            list($controller, $method) = explode(separator: "@", string: $controllerMethod);
 
             // Vd: $controller = App\Controllers\Client\CategoryController
             $controllerInstance = new $controller();

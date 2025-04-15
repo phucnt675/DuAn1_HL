@@ -1,5 +1,5 @@
 {
-    "name": "chi/php1_asm",
+    "name": "huy/duan1_as",
     "autoload": {
         "psr-4": {
             "App\\":"App/"
@@ -8,8 +8,8 @@
     },
     "authors": [
         {
-            "name": "chithl",
-            "email": "chithl@fpt.edu.vn"
+            "name": "trgh",
+            "email": "huytgpc08697@gmail.com"
         }
     ],
     "require": {
