@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Helpers\AuthHelper;
 use App\Helpers\NotificationHelper;
 use App\Models\User;
 use App\Validations\UserValidation;
@@ -20,6 +21,15 @@ class UserController
     // hiển thị danh sách
     public static function index()
     {
+
+        $is_valid = AuthHelper::checkLogin();
+
+
+        if (!$is_valid) {
+            NotificationHelper::error('login', 'Đăng nhập thất bại');
+            header('location: /admin/login');
+            exit;
+        }
 
         $user = new User();
         $data = $user->getAllUser();

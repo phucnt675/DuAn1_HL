@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Helpers\AuthHelper;
 use App\Helpers\NotificationHelper;
 use App\Models\Comment;
 use App\Validations\CommentValidation;
@@ -19,6 +20,16 @@ class CommentController
     // hiển thị danh sách bình luận
     public static function index()
     {
+
+        $is_valid = AuthHelper::checkLogin();
+
+
+        if (!$is_valid) {
+          NotificationHelper::error('login', 'Đăng nhập thất bại');
+          header('location: /admin/login');
+          exit;
+        }
+
         $Comment = new Comment();
         $data = $Comment-> getAllCommentJoinProductAndUser();
         Header::render();
