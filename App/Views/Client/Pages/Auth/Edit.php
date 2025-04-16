@@ -87,7 +87,7 @@ class Edit extends BaseView
                     <?php
                     if ($data && $data['avatar']) :
                     ?>
-                        <img src="<?= APP_URL ?>/public/assets/admin/img/users/<?= $data['avatar'] ?>" alt="" width="100%" style=" border-radius: 5px; " >
+                        <img src="<?= APP_URL ?>/public/uploads/avatars/<?= $data['avatar'] ?>" alt="" width="100%" style=" border-radius: 5px; " >
                     <?php
                     else :
                     ?>
@@ -116,7 +116,7 @@ class Edit extends BaseView
                             </div>
                             <div class="form-group">
                                 <label for="avatar">Ảnh đại diện*</label>
-                                <input type="file" name="avatar" id="avatar"  placeholder="Chọn ảnh đại diện">
+                                <input type="file" name="avatar" id="avatar"  placeholder="Chọn ảnh đại diện" value="<?= $data['avatar'] ?>">
                             </div>
 
                             <button type="submit" >Cập nhật</button>

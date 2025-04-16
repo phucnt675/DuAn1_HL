@@ -80,7 +80,7 @@ class User_profile extends BaseView
                     <div class="row">
                         <div class="col-md-4 text-center">
                             <?php if ($data && $data['avatar']) : ?>
-                                <img src="<?= APP_URL ?>/public/assets/admin/img/users/<?= $data['avatar'] ?>" alt="User Avatar" class="img-fluid shadow-lg border rounded-3" style="width: 200px; height: 200px; object-fit: cover;">
+                                <img src="<?= APP_URL ?>/public/uploads/avatars/<?= $data['avatar'] ?>" alt="User Avatar" class="img-fluid shadow-lg border rounded-3" style="width: 200px; height: 200px; object-fit: cover;">
                             <?php else : ?>
                                 <img src="/public/assets/client/img/user.png" class="img-thumbnail rounded-circle">
                             <?php endif; ?>

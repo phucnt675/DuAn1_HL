@@ -196,13 +196,13 @@ class AuthController
 
   public static function update($id)
   {
-    // $is_valid = Authvalidation::edit();
+    $is_valid = Authvalidation::edit();
 
-    // if (!$is_valid) {
-    //     NotificationHelper::error('update_user', 'Cập nhật thông tin tài khoản thất bại');
-    //     header("location: /users/$id");
-    //     exit;
-    // }
+    if (!$is_valid) {
+        NotificationHelper::error('update_user', 'Cập nhật thông tin tài khoản thất bại');
+        header("location: /users/$id");
+        exit;
+    }
 
     $data = [
       'email' => $_POST['email'],

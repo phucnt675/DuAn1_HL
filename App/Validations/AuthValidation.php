@@ -118,10 +118,11 @@ class AuthValidation
       return false;
     }
     //nơi lưu trữ hình ảnh trong sourcecode
-    $target_dir = 'public/uploads/users/';
+    $target_dir = 'public/uploads/avatars/';
     //kiểm tra loại file upload có hợp lệ ko
     $imageFileType = strtolower(pathinfo(basename($_FILES['avatar']['name']), PATHINFO_EXTENSION));
 
+    // echo  $imageFileType;
     if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
       NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, JPEG, GIF');
       return false;
@@ -132,6 +133,8 @@ class AuthValidation
 
     // đường dẫn đầy đủ để di chuyển file
     $target_file = $target_dir . $nameImage;
+
+    // echo $target_file;
 
     if (!move_uploaded_file($_FILES['avatar']['tmp_name'], $target_file)) {
       NotificationHelper::error('move_upload', 'Không thể tải ảnh vào thư mục đã lưu trữ');

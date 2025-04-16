@@ -122,73 +122,73 @@ class UserController
     // xử lý chức năng sửa (cập nhật)
     public static function update(int $id)
     {
-       // validation các trường dữ liệu
-       $is_valid = UserValidation::edit();
-       if (!$is_valid) {
-           NotificationHelper::error('update', 'Cập nhật người dùng thất bại');
-           header("location: /admin/users/$id");
-           exit;
-       }
-
-       $user = new User();
-
-       // thực hiện cập nhật
-       $data = [
-           'email' => $_POST['email'],
-           'name' => $_POST['name'],
-           'status' => $_POST['status']
-       ];
-
-       if ($_POST['password'] !== '') {
-           $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-       }
-
-       $is_upload = UserValidation::uploadAvartar();
-       if ($is_upload) {
-           $data['avatar'] = $is_upload;
-       }
-
-       $result = $user->updateUser($id, $data);
-
-       if ($result) {
-           NotificationHelper::success('update', 'Cập nhật người dùng thành công');
-           header('location: /admin/users');
-           exit;
-       } else {
-           NotificationHelper::success('update', 'Cập nhật người dùng thất bại');
-           header("location: /admin/users/$id");
-           exit;
-       }
-        }
-    
-
-
-        // thực hiện xoá
-        public static function delete(int $id)
-        {
-            $user=new User();
-            $result=$user->deleteUser($id);
-
-            if($result){
-                NotificationHelper::success('delete', 'Xóa người dùng thành công');
-            }else{
-                NotificationHelper::success('delete', 'Xóa người dùng thất bại');
-            }
-
-            header('location: /admin/users');
+        // validation các trường dữ liệu
+        $is_valid = UserValidation::edit();
+        if (!$is_valid) {
+            NotificationHelper::error('update', 'Cập nhật người dùng thất bại');
+            // header("location: /admin/users/$id");
+            // exit;
         }
 
-        public static function search() {
-            // var_dump($_GET);
-            $user = new User(); 
-            $searchTerm = $_GET['search'] ?? ''; // Lấy từ khóa tìm kiếm từ URL
-            $data = $user->searchUsers($searchTerm); // Gọi phương thức searchUsers thay vì search
-            
-            Header::render();
-            Notification::render();
-            NotificationHelper::unset();
-            Search::render($data);
-            Footer::render();
+        $user = new User();
+
+        // thực hiện cập nhật
+        $data = [
+            'email' => $_POST['email'],
+            'name' => $_POST['name'],
+            'status' => $_POST['status']
+        ];
+
+        if ($_POST['password'] !== '') {
+            $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
         }
-        
+
+        $is_upload = UserValidation::uploadAvartar();
+        if ($is_upload) {
+            $data['avatar'] = $is_upload;
+        }
+
+        $result = $user->updateUser($id, $data);
+
+        //    if ($result) {
+        //        NotificationHelper::success('update', 'Cập nhật người dùng thành công');
+        //        header('location: /admin/users');
+        //        exit;
+        //    } else {
+        //        NotificationHelper::success('update', 'Cập nhật người dùng thất bại');
+        //        header("location: /admin/users/$id");
+        //        exit;
+        //    }
+    }
+
+
+
+    // thực hiện xoá
+    public static function delete(int $id)
+    {
+        $user = new User();
+        $result = $user->deleteUser($id);
+
+        if ($result) {
+            NotificationHelper::success('delete', 'Xóa người dùng thành công');
+        } else {
+            NotificationHelper::success('delete', 'Xóa người dùng thất bại');
+        }
+
+        header('location: /admin/users');
+    }
+
+    public static function search()
+    {
+        // var_dump($_GET);
+        $user = new User();
+        $searchTerm = $_GET['search'] ?? ''; // Lấy từ khóa tìm kiếm từ URL
+        $data = $user->searchUsers($searchTerm); // Gọi phương thức searchUsers thay vì search
+
+        Header::render();
+        Notification::render();
+        NotificationHelper::unset();
+        Search::render($data);
+        Footer::render();
+    }
 }
