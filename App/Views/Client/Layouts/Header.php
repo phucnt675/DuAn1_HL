@@ -111,7 +111,7 @@ class Header extends BaseView
                 </div>
                 <div class="humberger__menu__contact">
                     <ul>
-                        <li><i class="fa fa-envelope"></i> xalanh@fashion.com</li>
+                        <li><i class="fa fa-envelope"></i> chocolate@shop.com</li>
                         <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 99K</li>
                     </ul>
                 </div>
@@ -126,7 +126,7 @@ class Header extends BaseView
                             <div class="col-lg-6 col-md-6">
                                 <div class="header__top__left">
                                     <ul>
-                                        <li><i class="fa fa-envelope"></i> xalanh@fashion.com</li>
+                                        <li><i class="fa fa-envelope"></i> chocolate@shop.com</li>
                                         <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 99K</li>
                                     </ul>
                                 </div>

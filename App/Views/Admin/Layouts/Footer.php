@@ -15,7 +15,7 @@ class Footer extends BaseView
                 <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                                 <div class="copyright text-center my-auto">
-                                        <span>Copyright &copy; XALANH FASHION</span>
+                                        <span>Copyright &copy; Chocolate Shop</span>
                                 </div>
                         </div>
                 </footer>

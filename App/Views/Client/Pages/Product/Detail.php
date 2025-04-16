@@ -68,7 +68,7 @@ class Detail extends BaseView
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="breadcrumb__text">
-                            <h2>XaLanh Fashion</h2>
+                            <h2>Chocolate shop</h2>
                             <div class="breadcrumb__option">
                                 <a href="/">Trang Chủ</a>
                                 <a href="/products">Cửa Hàng</a>

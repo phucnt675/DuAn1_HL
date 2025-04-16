@@ -62,7 +62,7 @@ class Index extends BaseView
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Email</h4>
-                        <p>xalanh@fashion.com</p>
+                        <p>Chocolate Shop</p>
                     </div>
                 </div>
             </div>
