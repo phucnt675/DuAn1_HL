@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Helpers\AuthHelper;
 use App\Helpers\NotificationHelper;
 use App\Models\Category;
 use App\Models\Comment;
@@ -20,6 +21,8 @@ class HomeController
 
         $user=new User();
         $total_user=$user->countTotalUser();
+        //bắt lỗi 
+        $is_valid = AuthHelper::checkLogin();
 
         $category=new Category();
         $total_category=$category->countTotalCategory();
@@ -27,6 +30,11 @@ class HomeController
         $product=new Product();
         $total_product=$product->countTotalProduct();
         $product_by_category=$product->countProductByCategory();
+        if (!$is_valid) {
+            NotificationHelper::error('login', 'Đăng nhập thất bại');
+            header('location: /admin/login/');
+            // exit;
+        }
 
         $comment= new Comment();
         $total_comment=$comment->countTotalComment();

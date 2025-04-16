@@ -75,8 +75,8 @@ class AuthValidation
     $is_valid = true;
 
     // tên đăng nhập
-    if (!isset($_POST['username']) || $_POST['username'] === '') {
-      NotificationHelper::error('username', 'không để trống tên đăng nhập và email');
+    if (!isset($_POST['email']) || $_POST['email'] === '') {
+      NotificationHelper::error('email', 'không để trống tên đăng nhập và email');
       $is_valid = false;
     }
 

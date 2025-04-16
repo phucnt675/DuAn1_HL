@@ -49,7 +49,6 @@ class AuthController
     }
 
     $data = [
-      'username' => $_POST['username'],
       'email' => $_POST['email'],
       'password' => $_POST['password'],
       'remember' => isset($_POST['remember'])
@@ -60,6 +59,7 @@ class AuthController
     if ($result) {
       NotificationHelper::success('login', 'Đăng nhập thành công');
       header('location: /admin');
+      // echo 'thanhnee';
     } else {
       NotificationHelper::error('login', 'Đăng nhập thất bại');
       header('location: /admin/login');

@@ -24,8 +24,8 @@ class Login extends BaseView
                                 <form action="/admin/login" method="post">
                                     <input type="hidden" name="method" value="POST">
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="email" id="username" name="username" class="form-control form-control-lg" />
-                                        <label class="form-label" for="username">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                                        <label class="form-label" for="email">Email</label>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline mb-4">

@@ -29,18 +29,18 @@ class AuthHelper
         // Kiểm tra tên đăng nhập hoặc email
         $user = new User();
         // Kiểm tra nếu là email hay username
-        $is_email = filter_var($data['username'], FILTER_VALIDATE_EMAIL);
+        $is_email = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
         
         // Nếu là email, tìm người dùng theo email, nếu không tìm theo username
         if ($is_email) {
-            $is_exist = $user->getOneUserByEmail($data['username']);
+            $is_exist = $user->getOneUserByEmail($data['email']);
         } else {
-            $is_exist = $user->getOneUserByUsername($data['username']);
+            $is_exist = $user->getOneUserByUsername($data['email']);
         }
     
         // Nếu không tìm thấy người dùng, trả về thông báo lỗi
         if (!$is_exist) {
-            NotificationHelper::error('username', 'Tên đăng nhập hoặc email không tồn tại');
+            NotificationHelper::error('email', 'Tên đăng nhập hoặc email không tồn tại');
             return false;
         }
     
