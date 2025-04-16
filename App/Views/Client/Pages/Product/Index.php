@@ -122,78 +122,8 @@ class Index extends BaseView
                                         </div>
                                     </div>
                             </div>
-                            <div class="sidebar__item sidebar__item__color--option">
-                                <h4>Màu Sản Phẩm</h4>
-                                <div class="sidebar__item__color sidebar__item__color--white">
-                                    <label for="white">
-                                        Trắng
-                                        <input type="radio" id="white" name="color" value="Màu trắng"
-                                            onclick="filterByColor('Màu trắng')">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--gray">
-                                    <label for="gray">
-                                        Xám
-                                        <input type="radio" id="gray" value="Màu xám " name="color"
-                                            onclick="filterByColor('Màu xám')">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--red">
-                                    <label for="red">
-                                        Đỏ
-                                        <input type="radio" id="red" name="color" value="Màu đỏ"
-                                            onclick="filterByColor('Màu đỏ')">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--black">
-                                    <label for="black">
-                                        Đen
-                                        <input type="radio" name="color" id="black" value="Màu đen"
-                                            onclick="filterByColor('Màu đen')">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--blue">
-                                    <label for="blue">
-                                        Xanh
-                                        <input type="radio" id="blue">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--green">
-                                    <label for="green">
-                                        Xanh lá
-                                        <input type="radio" id="green">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="sidebar__item">
-                                <h4>Chất Liệu</h4>
-                                <div class="sidebar__item__size">
-                                    <label for="large">
-                                        Vải lụa
-                                        <input type="radio" name="material" id="large" value="Vải lụa"
-                                            onclick="filterByMaterial('Vải lụa')">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__size">
-                                    <label for="medium">
-                                        Vải len
-                                        <input type="radio" name="material" id="medium" value="Vải len"
-                                            onclick="filterByMaterial('Vải len')">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__size">
-                                    <label for="small">
-                                        Da
-                                        <input type="radio" id="small">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__size">
-                                    <label for="tiny">
-                                        Tiny
-                                        <input type="radio" id="tiny">
-                                    </label>
-                                </div>
-                            </div>
+
+
                             <div class="sidebar__item">
                                 <div class="latest-product__text">
                                     <h4>Sản Phẩm Mới</h4>

@@ -17,7 +17,7 @@ class Footer extends BaseView
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="/"><img src="/public/assets/client/img/logo.png" alt=""></a>
+                            <a href="/"><img src="/public/assets/client/img/logo/logo/1.png" alt="" height = "200px"></a>
                         </div>
                         <ul>
                             <li>Địa chỉ: Cantho/Vietnam</li>

@@ -53,9 +53,8 @@ class Home extends BaseView
                         </div>
                         <div class="hero__item set-bg" data-setbg="/public/assets/client/img/banner/banner5.jpg">
                             <div class="hero__text">
-                                <span>Phụ Kiện Sang Trọng</span>
-                                <h3>Phong cách thời thượng <br />100%</h3>
-                                <p>Thể hiện bản lĩnh – Khẳng định phong cách.</p>
+                                <span>Chocolate Cao cấp</span>
+                                <h3>Sang trọng quý phái<br />100%</h3>
                                 <a href="/products" class="primary-btn">Cửa Hàng</a>
                             </div>
                         </div>
@@ -281,60 +280,56 @@ class Home extends BaseView
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <img src="/public/assets/client/img/blog/blog-4.png" alt="">
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> 26/11/2024</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
-                                </ul>
-                                <h5><a href="#">Bí quyết chọn phụ kiện thời trang "chất lừ" cho nàng sành điệu</a></h5>
-                                <p>Cá tính với set đồ all black. Set đồ all black không thể thiếu trong tủ đồ của các cô nàng
-                                    sành điệu. Tone màu full đen luôn là lựa chọn chất lừ và dễ dàng ...</p>
-                                <a href="#" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <img src="/public/assets/client/img/blog/blog-4.png" alt="">
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> 26/11/2024</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
-                                </ul>
-                                <h5><a href="#">Cập nhật ngay các sản phẩm hot nhất và chọn cho mình phụ kiện hoàn hảo để tỏa sáng mỗi ngày.</a></h5>
-                                <p>Những món phụ kiện này không chỉ là điểm nhấn hoàn hảo cho bộ trang phục, mà còn mang đến vẻ
-                                    đẹp thời thượng và cuốn hút.</p>
-                                <a href="#" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="blog__item">
-                            <div class="blog__item__pic">
-                                <img src="/public/assets/client/img/blog/blog-4.png" alt="">
-                            </div>
-                            <div class="blog__item__text">
-                                <ul>
-                                    <li><i class="fa fa-calendar-o"></i> 10/12/2024</li>
-                                    <li><i class="fa fa-comment-o"></i> 5</li>
-                                </ul>
-                                <h5><a href="#">Phụ kiện thời trang "chất lừ" cho nàng sành điệu</a></h5>
-                                <p>Khám phá bộ sưu tập phụ kiện thời trang đa dạng, từ khăn len, đồng hồ, kính mát đến các món
-                                    trang sức tinh tế, giúp bạn thể hiện phong cách riêng biệt.
-                                </p>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="blog__item">
+            <div class="blog__item__pic">
+                <img src="/public/assets/client/img/blog/blog-4.jpg" alt="">
+            </div>
+            <div class="blog__item__text">
+                <ul>
+                    <li><i class="fa fa-calendar-o"></i> 26/11/2024</li>
+                    <li><i class="fa fa-comment-o"></i> 5</li>
+                </ul>
+                <h5><a href="#">Bí quyết chọn chocolate "chất lừ" cho người sành ăn</a></h5>
+                <p>Khám phá hương vị độc đáo của chocolate đen nguyên chất. Đây là lựa chọn không thể thiếu với tín đồ yêu thích hương vị đậm đà và tinh tế...</p>
+                <a href="#" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="blog__item">
+            <div class="blog__item__pic">
+                <img src="/public/assets/client/img/blog/blog-4.jpg" alt="">
+            </div>
+            <div class="blog__item__text">
+                <ul>
+                    <li><i class="fa fa-calendar-o"></i> 26/11/2024</li>
+                    <li><i class="fa fa-comment-o"></i> 5</li>
+                </ul>
+                <h5><a href="#">Khám phá các loại chocolate hot nhất và tìm vị ngọt hoàn hảo cho từng ngày.</a></h5>
+                <p>Những viên chocolate cao cấp không chỉ mang lại cảm giác ngọt ngào mà còn là món quà tinh tế dành tặng người thân yêu.</p>
+                <a href="#" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="blog__item">
+            <div class="blog__item__pic">
+                <img src="/public/assets/client/img/blog/blog-4.jpg" alt="">
+            </div>
+            <div class="blog__item__text">
+                <ul>
+                    <li><i class="fa fa-calendar-o"></i> 10/12/2024</li>
+                    <li><i class="fa fa-comment-o"></i> 5</li>
+                </ul>
+                <h5><a href="#">Thế giới chocolate dành cho người yêu hương vị nguyên bản</a></h5>
+                <p>Thưởng thức những dòng chocolate từ Bỉ, Pháp đến Thụy Sĩ với độ ngọt, đắng khác nhau giúp bạn trải nghiệm trọn vẹn sự tinh tế trong từng thanh chocolate.</p>
+                <a href="#" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                <a href="#" class="blog__btn">ĐỌC THÊM <span class="arrow_right"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <!-- Blog Section End -->

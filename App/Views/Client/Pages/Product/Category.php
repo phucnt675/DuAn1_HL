@@ -120,48 +120,7 @@ class Category extends BaseView
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar__item sidebar__item__color--option">
-                                <h4>Màu Sản Phẩm</h4>
-                                <div class="sidebar__item__color sidebar__item__color--white">
-                                    <label for="white">
-                                        Trắng
-                                        <input type="radio" id="white" name="color" value="Màu trắng"
-                                            >
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--gray">
-                                    <label for="gray">
-                                        Xám
-                                        <input type="radio" id="gray" value="Màu xám " name="color"
-                                           >
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--red">
-                                    <label for="red">
-                                        Đỏ
-                                        <input type="radio" id="red">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--black">
-                                    <label for="black">
-                                        Đen
-                                        <input type="radio" name="color" id="black" value="Màu đen"
-                                            >
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--blue">
-                                    <label for="blue">
-                                        Xanh
-                                        <input type="radio" id="blue">
-                                    </label>
-                                </div>
-                                <div class="sidebar__item__color sidebar__item__color--green">
-                                    <label for="green">
-                                        Xanh lá
-                                        <input type="radio" id="green">
-                                    </label>
-                                </div>
-                            </div>
+
                             <div class="sidebar__item">
                                 <h4>Chất Liệu</h4>
                                 <div class="sidebar__item__size">
