@@ -62,8 +62,8 @@ class Index extends BaseView
                                                     alt="" width="100px">
                                             </td>
                                             <td><?= !empty($item['phone_number']) ? $item['phone_number'] : 'Không sử dụng số điện thoại' ?></td>
-                                            <td><?= ($item['role'] == 0) ? 'Quản trị viên' : 'Khách hàng' ?></td>
-                                            <td><?= ($item['status'] == 1) ? 'Hoạt động' : 'Khóa' ?></td>
+                                            <td><?= ($item['role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?></td>
+                                            <td><?= ($item['status'] == 0) ? 'Hoạt động' : 'Khóa' ?></td>
                                             <td>
                                                 <a href="/admin/users/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
 
