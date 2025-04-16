@@ -22,7 +22,7 @@ class OrderController
     public static function index()
     {
         $oder = new Order();
-        $data = $oder->getAllOderList();
+        $data = $oder->getAllOrderList();
 
         Header::render();
         Notification::render();
@@ -58,7 +58,8 @@ class OrderController
     }
 
 
-    public static function create(){
+    public static function create()
+    {
 
         $order = new Order();
         $data = $order->getAllProductPayment();
@@ -68,12 +69,13 @@ class OrderController
         Footer::render();
     }
 
-    public static function  store(){
+    public static function store()
+    {
         $username = $_POST['username'];
         $user = new User();
         $is_exist = $user->getOneUserByUsername($username);
 
-        if($is_exist) {
+        if ($is_exist) {
             NotificationHelper::error('store', 'Không có tên người dùng');
             header('location: /admin/orders/create');
         }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Helpers\AuthHelper;
 use App\Helpers\NotificationHelper;
 use App\Models\Category;
 use App\Models\Product;
@@ -24,6 +25,16 @@ class ProductController
 
     public static function index()
     {
+
+        $is_valid = AuthHelper::checkLogin();
+
+
+        if (!$is_valid) {
+            NotificationHelper::error('login', 'Đăng nhập thất bại');
+            header('location: /admin/login');
+            exit;
+        }
+
         $products = new Product();
 
         // Lấy tất cả sản phẩm và danh mục
@@ -31,8 +42,8 @@ class ProductController
 
         // Duyệt qua từng sản phẩm và lấy các biến thể
         // Duyệt qua từng sản phẩm và lấy các biến thể
-       
-         foreach ($data as &$product) {
+
+        foreach ($data as &$product) {
             error_log("Lấy biến thể cho sản phẩm ID: {$product['id']}");
             $product['variants'] = $products->getProductVariants($product['id']);
             //var_dump($product['variants']); // Kiểm tra dữ liệu trả về từ phương thức
@@ -62,15 +73,15 @@ class ProductController
     {
         // Validation các trường dữ liệu
         $is_valid = ProductValidation::create();
-    
+
         if (!$is_valid) {
             NotificationHelper::error('store', 'Thêm sản phẩm thất bại');
             header('location: /admin/products/create');
             exit;
         }
-    
+
         $name = $_POST['name'];
-    
+
         // Kiểm tra tên sản phẩm có tồn tại chưa => không được trùng tên
         $product = new Product();
         $is_exist = $product->getOneProductByName($name);
@@ -79,7 +90,7 @@ class ProductController
             header('location: /admin/products/create');
             exit;
         }
-    
+
         // Thực hiện thêm sản phẩm
         $data = [
             'name' => $name,
@@ -91,16 +102,16 @@ class ProductController
             'status' => $_POST['status'],
             'category_id' => $_POST['category_id'],
         ];
-    
+
         // Kiểm tra và upload hình ảnh nếu có
         $is_upload = ProductValidation::uploadImage();
         if ($is_upload) {
             $data['image'] = $is_upload;
         }
-    
+
         // Tạo sản phẩm và lấy ID của sản phẩm mới
         $product_id = $product->createProduct($data);  // Giả sử createProduct trả về product_id
-    
+
         if ($product_id) {
             // Nếu sản phẩm được tạo thành công, xử lý SKU (biến thể)
             if (isset($_POST['sku']) && !empty($_POST['sku'])) {
@@ -121,14 +132,14 @@ class ProductController
                         'material_values' => isset($sku['material_values']) ? json_encode($sku['material_values']) : null // Giá trị vật liệu
                     ];
                 }
-    
+
                 // Lưu SKU vào cơ sở dữ liệu
                 $productSkuModel = new ProductSku();
                 foreach ($skuData as $sku) {
                     $productSkuModel->createSku($sku);
                 }
             }
-    
+
             // Thông báo thành công và chuyển hướng
             NotificationHelper::success('store', 'Thêm sản phẩm thành công');
             header('location: /admin/products');
@@ -140,7 +151,7 @@ class ProductController
             exit;
         }
     }
-    
+
 
 
 

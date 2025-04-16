@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers\Admin;
+
+use App\Helpers\AuthHelper;
 use App\Validations\CategoryValidation;
 use App\Helpers\NotificationHelper;
 use App\Models\Category;
@@ -18,6 +20,15 @@ class CategoryController
     // hiển thị danh sách
     public static function index()
     {
+
+        $is_valid = AuthHelper::checkLogin();
+
+
+        if (!$is_valid) {
+          NotificationHelper::error('login', 'Đăng nhập thất bại');
+          header('location: /admin/login');
+          exit;
+        }
 
         $category = new Category();
         $data = $category-> getAllCategory();
