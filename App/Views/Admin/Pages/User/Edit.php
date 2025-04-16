@@ -86,7 +86,7 @@ class Edit extends BaseView
                                     </div>
                                     <div class="form-group">
                                         <label for="role">Quyền</label>
-                                        <input type="text" class="form-control" id="role" name="role" value="<?= ($data['role']==1)?'Quản trị viên': 'Khách hàng'?>" disabled>
+                                        <input type="text" class="form-control" id="role" name="role" value="<?= ($data['role']==0)?'Quản trị viên': 'Khách hàng'?>" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái*</label>

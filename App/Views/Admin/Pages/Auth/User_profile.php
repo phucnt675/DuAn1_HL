@@ -34,7 +34,7 @@ class User_profile extends BaseView
                                 <li class="list-group-item"><strong>Email:</strong> <?= $data['email'] ?></li>
                                 <li class="list-group-item"><strong>Số điện thoại:</strong> <?= $data['phone_number'] ?></li>
                                 <li class="list-group-item"><strong>Trạng thái:</strong> <?= ($data['status']== 1) ? 'Hoạt động' : 'Khóa' ?></li>
-                                <li class="list-group-item"><strong>Quyền:</strong> <?= ($data['role']== 1) ? 'Quản trị viên' : 'Khách hàng'  ?></li>
+                                <li class="list-group-item"><strong>Quyền:</strong> <?= ($data['role']== 0) ? 'Quản trị viên' : 'Khách hàng'  ?></li>
                             </ul>
                         </div>
                     </div>
