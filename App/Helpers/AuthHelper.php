@@ -35,7 +35,7 @@ class AuthHelper
         if ($is_email) {
             $is_exist = $user->getOneUserByEmail($data['email']);
         } else {
-            $is_exist = $user->getOneUserByUsername($data['email']);
+            $is_exist = $user->getOneUserByUsername($data['username']);
         }
     
         // Nếu không tìm thấy người dùng, trả về thông báo lỗi

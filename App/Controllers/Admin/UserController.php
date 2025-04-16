@@ -126,8 +126,8 @@ class UserController
         $is_valid = UserValidation::edit();
         if (!$is_valid) {
             NotificationHelper::error('update', 'Cập nhật người dùng thất bại');
-            // header("location: /admin/users/$id");
-            // exit;
+            header("location: /admin/users/$id");
+            exit;
         }
 
         $user = new User();
@@ -150,15 +150,15 @@ class UserController
 
         $result = $user->updateUser($id, $data);
 
-        //    if ($result) {
-        //        NotificationHelper::success('update', 'Cập nhật người dùng thành công');
-        //        header('location: /admin/users');
-        //        exit;
-        //    } else {
-        //        NotificationHelper::success('update', 'Cập nhật người dùng thất bại');
-        //        header("location: /admin/users/$id");
-        //        exit;
-        //    }
+           if ($result) {
+               NotificationHelper::success('update', 'Cập nhật người dùng thành công');
+               header('location: /admin/users');
+               exit;
+           } else {
+               NotificationHelper::success('update', 'Cập nhật người dùng thất bại');
+               header("location: /admin/users/$id");
+               exit;
+           }
     }
 
 

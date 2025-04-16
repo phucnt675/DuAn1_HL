@@ -79,7 +79,7 @@ class Edit extends BaseView
                                     <div class="form-group">
                                         <label for="avatar">Hình đại diện</label>
                                         <td>
-                                                <img src="<?= !empty($data['avatar']) ? APP_URL . '/public/assets/admin/img/users/' . $data['avatar'] : APP_URL . '/public/assets/client/img/user.png' ?>"
+                                                <img src="<?= !empty($data['avatar']) ? APP_URL . '/public/uploads/users/' . $data['avatar'] : APP_URL . '/public/assets/client/img/user.png' ?>"
                                                     alt="" width="100px">
                                             </td>
                                         <input type="file" class="form-control" id="avatar" placeholder="Chọn ảnh người dùng..." name="avatar">

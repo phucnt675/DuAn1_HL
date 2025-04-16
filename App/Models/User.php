@@ -53,7 +53,7 @@ class User extends BaseModel
         }
     }
 
-    public function getOneUserByEmail(string $username)
+    public function getOneUserByEmail(string $email)
     {
         $result = [];
         try {
@@ -61,7 +61,7 @@ class User extends BaseModel
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
 
-            $stmt->bind_param('s', $username);
+            $stmt->bind_param('s', $email);
             $stmt->execute();
             return $stmt->get_result()->fetch_assoc();
         } catch (\Throwable $th) {

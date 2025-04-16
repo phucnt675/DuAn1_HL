@@ -58,7 +58,7 @@ class Index extends BaseView
                                             <td><?= $item['name'] ?></td>
                                             <td><?= $item['email'] ?></td>
                                             <td>
-                                                <img src="<?= !empty($item['avatar']) ? APP_URL . '/public/uploads/users/' . $item['avatar'] : APP_URL . '/public/assets/client/img/user.png' ?>"
+                                                <img src="<?= !empty($item['avatar']) ? APP_URL . '/public/uploads/avatars/' . $item['avatar'] : APP_URL . '/public/assets/client/img/user.png' ?>"
                                                     alt="" width="100px">
                                             </td>
                                             <td><?= !empty($item['phone_number']) ? $item['phone_number'] : 'Không sử dụng số điện thoại' ?></td>
