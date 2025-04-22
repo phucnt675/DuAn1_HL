@@ -51,30 +51,42 @@ GROUP BY carts.id;
         }
     }
 
-    public function addProductToCart($user_id, $product_skus_id, $quantity)
+    public function addProductToCart($user_id, $product_skus_id, $product_id, $quantity)
     {
         try {
-            // Kiểm tra nếu sản phẩm đã có trong giỏ hàng
-            $sql = "SELECT id, quantity FROM $this->table WHERE user_id = ? AND product_skus_id = ?";
             $conn = $this->_conn->MySQLi();
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ii', $user_id, $product_skus_id);
+    
+            // Xây dựng truy vấn kiểm tra sản phẩm đã có trong giỏ chưa
+            if ($product_skus_id) {
+                $sql = "SELECT id, quantity FROM $this->table WHERE user_id = ? AND product_id = ? AND product_skus_id = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('iii', $user_id, $product_id, $product_skus_id);
+            } else {
+                $sql = "SELECT id, quantity FROM $this->table WHERE user_id = ? AND product_id = ? AND product_skus_id IS NULL";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ii', $user_id, $product_id);
+            }
+    
             $stmt->execute();
             $result = $stmt->get_result();
             $existingCartItem = $result->fetch_assoc();
-
+    
             if ($existingCartItem) {
-                // Nếu sản phẩm đã có trong giỏ, cập nhật số lượng
                 $newQuantity = $existingCartItem['quantity'] + $quantity;
                 $updateSql = "UPDATE $this->table SET quantity = ? WHERE id = ?";
                 $updateStmt = $conn->prepare($updateSql);
                 $updateStmt->bind_param('ii', $newQuantity, $existingCartItem['id']);
                 return $updateStmt->execute();
             } else {
-                // Nếu sản phẩm chưa có trong giỏ, thêm mới
-                $insertSql = "INSERT INTO $this->table (user_id, product_skus_id, quantity) VALUES (?, ?, ?)";
-                $insertStmt = $conn->prepare($insertSql);
-                $insertStmt->bind_param('iii', $user_id, $product_skus_id, $quantity);
+                if ($product_skus_id) {
+                    $insertSql = "INSERT INTO $this->table (user_id, product_id, product_skus_id, quantity) VALUES (?, ?, ?, ?)";
+                    $insertStmt = $conn->prepare($insertSql);
+                    $insertStmt->bind_param('iiii', $user_id, $product_id, $product_skus_id, $quantity);
+                } else {
+                    $insertSql = "INSERT INTO $this->table (user_id, product_id, quantity) VALUES (?, ?, ?)";
+                    $insertStmt = $conn->prepare($insertSql);
+                    $insertStmt->bind_param('iii', $user_id, $product_id, $quantity);
+                }
                 return $insertStmt->execute();
             }
         } catch (Exception $e) {
@@ -82,6 +94,7 @@ GROUP BY carts.id;
             return false;
         }
     }
+    
     public function getOneCart($id)
     {
         return $this->getOne($id);

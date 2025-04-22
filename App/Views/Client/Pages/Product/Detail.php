@@ -168,10 +168,18 @@ class Detail extends BaseView
                             <?php endif; ?>
 
                             <form id="addToCart" action="/cart/add" method="POST">
-                                <input type="hidden" name="method" value="POST">
+                                <!-- Gửi product_id -->
+                                <input type="hidden" name="productId" value="<?= $data['products']['id'] ?>">
+                                <input type="hidden" name="method" value="POST" id="productSku">
+                                <!-- Nếu chọn radio thì giá trị productSku sẽ tự động gửi -->
+                                <!-- Trường số lượng -->
+
+                                <input type="hidden" name="method" value="POST" id="quantity">
+
 
                                 <button type="submit" class="primary-btn">Thêm vào giỏ hàng</button>
                             </form>
+
 
                             <ul>
                                 <li><b>Lượt xem</b> <span><?= $data['products']['view'] ?></span></li>
