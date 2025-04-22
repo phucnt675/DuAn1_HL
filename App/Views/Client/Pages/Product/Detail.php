@@ -129,11 +129,11 @@ class Detail extends BaseView
                                 <div class="product-sku-wrapper">
                                     <?php foreach ($data['productWithDetail'] as $item): ?>
                                         <div class="product-sku-item">
-                                            <label class="product-sku-label" >
+                                            <label class="product-sku-label">
                                                 <input form="addToCart" name="productSku" type="radio" value="<?= $item['sku_id'] ?>" class="hidden-radio">
-                                                
+
                                                 <div class="sku-option" onclick="changeProductOption('<?= $item['option_values'] ?>', '<?= $item['main_image'] ?>', '<?= $item['price'] ?>', '<?= isset($item['discount_price']) ? $item['discount_price'] : 0 ?>')">
-                                                <?= $item['option_values']  ?></div >
+                                                    <?= $item['option_values']  ?></div>
                                             </label>
                                         </div>
                                     <?php endforeach; ?>
@@ -166,10 +166,18 @@ class Detail extends BaseView
                             <?php endif; ?>
 
                             <form id="addToCart" action="/cart/add" method="POST">
-                                <input type="hidden" name="method" value="POST">
+                                <!-- Gửi product_id -->
+                                <input type="hidden" name="productId" value="<?= $data['products']['id'] ?>">
+                                <input type="hidden" name="method" value="POST" id="productSku">
+                                <!-- Nếu chọn radio thì giá trị productSku sẽ tự động gửi -->
+                                <!-- Trường số lượng -->
+
+                                <input type="hidden" name="method" value="POST" id="quantity">
+
 
                                 <button type="submit" class="primary-btn">Thêm vào giỏ hàng</button>
                             </form>
+
 
                             <ul>
                                 <li><b>Lượt xem</b> <span><?= $data['products']['view'] ?></span></li>

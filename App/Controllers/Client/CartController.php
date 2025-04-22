@@ -43,32 +43,39 @@ class CartController
     }
 
     public static function add()
-{
-    $user_id  = $_SESSION['users']['id'];
-    if (!$user_id) {
-        NotificationHelper::error('auth', 'Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng');
-        header('location: /login');
+    {
+        $user_id  = $_SESSION['users']['id'];
+        if (!$user_id) {
+            NotificationHelper::error('auth', 'Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng');
+            header('location: /login');
+            exit;
+        }
+    
+        // Lấy dữ liệu từ form
+        $product_id = $_POST['productId'] ?? null;
+        $product_skus_id = $_POST['productSku'] ?? null;
+        $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+    
+        if (!$product_id) {
+            NotificationHelper::error('Giỏ hàng', 'Thiếu thông tin product_id');
+            header('Location: /');
+            exit;
+        }
+    
+        // Nếu không có SKU thì gán bằng NULL (vẫn hợp lệ vì cột trong DB có thể null)
+        $cartModel = new CartModel();
+        $success = $cartModel->addProductToCart($user_id, $product_skus_id, $product_id, $quantity);
+    
+        if ($success) {
+            NotificationHelper::success('Giỏ hàng', 'Thêm sản phẩm vào giỏ hàng thành công');
+            header('Location: /cart');
+        } else {
+            NotificationHelper::error('Giỏ hàng', 'Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng');
+            header("Location: /products/$product_id");
+        }
         exit;
     }
-
-   
-
-    $product_skus_id = $_POST['productSku'];
-    $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : 1; 
-
-   
-    $cartModel = new CartModel();
-    $success = $cartModel->addProductToCart($user_id, $product_skus_id, $quantity);
-
-    if ($success) {
-        NotificationHelper::success('Giỏ hàng', 'Thêm sản phẩm vào giỏ hàng thành công');
-        header('Location: /cart');
-    } else {
-        NotificationHelper::error('Giỏ hàng', 'Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng');
-        header('Location: /products/' . $product_skus_id);
-    }
-    exit;
-}
+    
 
 public function updateCart()
 {
