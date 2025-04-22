@@ -72,4 +72,5 @@ class AuthController
         NotificationHelper::success('logout', 'Đăng xuất thành công');
         header('location: /');
     }
+    
 }

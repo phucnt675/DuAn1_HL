@@ -30,32 +30,32 @@ class AuthHelper
         $user = new User();
         // Kiểm tra nếu là email hay username
         $is_email = filter_var($data['email'], FILTER_VALIDATE_EMAIL);
-        
+
         // Nếu là email, tìm người dùng theo email, nếu không tìm theo username
         if ($is_email) {
             $is_exist = $user->getOneUserByEmail($data['email']);
         } else {
             $is_exist = $user->getOneUserByUsername($data['username']);
         }
-    
+
         // Nếu không tìm thấy người dùng, trả về thông báo lỗi
         if (!$is_exist) {
             NotificationHelper::error('email', 'Tên đăng nhập hoặc email không tồn tại');
             return false;
         }
-    
+
         // Kiểm tra mật khẩu có chính xác không
         if (!password_verify($data['password'], $is_exist['password'])) {
             NotificationHelper::error('password', 'Mật khẩu không chính xác');
             return false;
         }
-    
+
         // Kiểm tra tài khoản bị khóa hay không
         if ($is_exist['status'] == 0) {
             NotificationHelper::error('status', 'Tài khoản đã bị khóa');
             return false;
         }
-    
+
         // Lưu session hoặc cookie nếu người dùng chọn nhớ tài khoản
         if ($data['remember']) {
             // Lưu cookie và session
@@ -64,11 +64,11 @@ class AuthHelper
             // Lưu chỉ session
             self::updateSession($is_exist['id']);
         }
-    
+
         NotificationHelper::success('login', 'Đăng nhập thành công');
         return true;
     }
-    
+
 
     public static function updateCookie(int $id)
     {
@@ -100,35 +100,35 @@ class AuthHelper
         return true;
     }
 
-    
+
     public static function checkLogin(): bool
-{
-    // Kiểm tra session
-    if (isset($_SESSION['users'])) {
-        return isset($_SESSION['users']['id']); // Trả về true nếu ID tồn tại
+    {
+        // Kiểm tra session
+        if (isset($_SESSION['users'])) {
+            return isset($_SESSION['users']['id']); // Trả về true nếu ID tồn tại
+        }
+
+        return false; // Không đăng nhập
     }
 
-    return false; // Không đăng nhập
-}
 
 
-    
 
 
 
     public static function logout()
-{
-    // Xóa session
-    unset($_SESSION['users']);
-    
-    // Xóa cookie
-    if (isset($_COOKIE['users'])) {
-        setcookie('users', '', time() - 3600, '/');
-    }
+    {
+        // Xóa session
+        unset($_SESSION['users']);
 
-    // Thông báo đăng xuất thành công
-    NotificationHelper::success('logout', 'Đăng xuất thành công');
-}
+        // Xóa cookie
+        if (isset($_COOKIE['users'])) {
+            setcookie('users', '', time() - 3600, '/');
+        }
+
+        // Thông báo đăng xuất thành công
+        NotificationHelper::success('logout', 'Đăng xuất thành công');
+    }
 
 
     public static function edit($id): bool
@@ -202,7 +202,7 @@ class AuthHelper
 
         return $result;
     }
-    
+
 
 
     // public static function middleware()
@@ -231,31 +231,44 @@ class AuthHelper
     //                 exit;
     //             }
     //     }
-        
+
     // }
 
     public static function middleware()
-{
-    // Lấy đường dẫn hiện tại
-    $requestUri = $_SERVER['REQUEST_URI'];
+    {
+        // Lấy đường dẫn hiện tại
+        $requestUri = $_SERVER['REQUEST_URI'];
 
-    // Kiểm tra nếu đường dẫn chính xác là "/admin"
-    if (trim($requestUri) === '/admin') {
-        // Kiểm tra người dùng đã đăng nhập chưa
-        if (!isset($_SESSION['users'])) {
-            NotificationHelper::error('admin', 'Vui lòng đăng nhập');
-            header('location: /admin/login');
-            exit;
-        }
+        // Kiểm tra nếu đường dẫn chính xác là "/admin"
+        if (trim($requestUri) === '/admin') {
+            // Kiểm tra người dùng đã đăng nhập chưa
+            if (!isset($_SESSION['users'])) {
+                NotificationHelper::error('admin', 'Vui lòng đăng nhập');
+                header('location: /admin/login');
+                exit;
+            }
 
-        // Kiểm tra quyền của người dùng
-        if ($_SESSION['users']['role'] != 1) {
-            NotificationHelper::error('admin', 'Tài khoản này không có quyền truy cập');
-            header('location: /admin/login');
-            exit;
+            // Kiểm tra quyền của người dùng
+            if ($_SESSION['users']['role'] != 1) {
+                NotificationHelper::error('admin', 'Tài khoản này không có quyền truy cập');
+                header('location: /admin/login');
+                exit;
+            }
         }
     }
-}
 
-    
+    public static function user(): array
+    {
+        return $_SESSION['users'] ?? null;
+    }
+
+    /**
+     * Kiểm tra xem đã đăng nhập hay chưa
+     */
+    public static function check(): bool
+    {
+        return isset($_SESSION['users']) && !empty($_SESSION['users']);
+    }
+
+
 }

@@ -209,6 +209,12 @@ Route::post('/admin/login', 'App\Controllers\Admin\AuthController@loginActionAdm
 // xử lí đăng xuất
 Route::get('/admin/logout','App\Controllers\Admin\AuthController@logout');
 
+Route::post('/comment/store','App\Controllers\Client\CommentController@store');
+
+Route::get('/login/google', 'App\Controllers\Client\GoogleAuthController@redirectToGoogle');
+
+// Route để xử lý callback từ Google
+Route::get('/login/google/callback', 'App\Controllers\Client\GoogleAuthController@handleCallback');
 
 Route::dispatch(uri: $_SERVER['REQUEST_URI']);
 

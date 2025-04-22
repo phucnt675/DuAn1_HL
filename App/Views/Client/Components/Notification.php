@@ -1,11 +1,15 @@
 <?php
-
 namespace App\Views\Client\Components;
 
 use App\Views\BaseView;
 
 class Notification extends BaseView
 {
+    /**
+     * Hiển thị thông báo từ session
+     * 
+     * @param mixed $data Dữ liệu bổ sung (không bắt buộc)
+     */
     public static function render($data = null)
     {
         if (isset($_SESSION['success'])) :

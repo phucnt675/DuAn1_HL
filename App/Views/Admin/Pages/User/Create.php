@@ -78,8 +78,8 @@ class Create extends BaseView
                                         <label for="role">Quyền*</label>
                                         <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="role" name="role">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="0">Quản trị viên</option>
-                                            <option value="1">Khách hàng</option>
+                                            <option value="1">Quản trị viên</option>
+                                            <option value="0">Khách hàng</option>
                                         </select>
                                     </div>
                                 </div>
