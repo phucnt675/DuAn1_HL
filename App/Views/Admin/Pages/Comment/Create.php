@@ -4,7 +4,7 @@ namespace App\Views\Admin\Pages\Comment;
 
 use App\Views\BaseView;
 
-class Edit extends BaseView
+class Create extends BaseView
 {
     public static function render($data = null)
     {
@@ -19,12 +19,12 @@ class Edit extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ BÌNH LUẬN</h4>
+                        <h4 class="page-title">QUẢN LÝ LOẠI SẢN PHẨM</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Sửa bình luận</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Thêm loại sản phẩm</li>
                                 </ol>
                             </nav>
                         </div>
@@ -44,36 +44,20 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/comments/<?= $data['id'] ?>" method="POST">
+                            <form class="form-horizontal" action="/admin/categories" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Sửa bình luận</h4>
-                                    <input type="hidden" name="method" id="" value="PUT">
+                                    <h4 class="card-title">Thêm loại sản phẩm</h4>
+                                    <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
-                                        <label for="id">ID</label>
-                                        <input type="text" class="form-control" id="id"  name="id" value="<?= $data['id'] ?>" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="username">Tài khoản*</label>
-                                        <input type="text" class="form-control" id="username" name="username" value="<?= $data['username'] ?>" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="product_name">Sản phẩm*</label>
-                                        <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $data['product_name'] ?>" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="content">Nội dung*</label>
-                                        <textarea class="form-control" id="content" name="content" rows="3" disabled><?=$data['content']?></textarea>
-                                        </div>
-                                    <div class="form-group">
-                                        <label for="date">Thời gian*</label>
-                                        <input type="text" class="form-control" id="date" name="date" value="<?= $data['date'] ?>" disabled>
+                                        <label for="name">Tên*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name">
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['status'] ?>" required>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1" <?= ($data['status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
-                                            <option value="0" <?= ($data['status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
+                                            <option value="1">Hiển thị</option>
+                                            <option value="0">Ẩn</option>
 
                                         </select>
                                     </div>
@@ -81,7 +65,7 @@ class Edit extends BaseView
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="reset" class="btn btn-danger text-white" name="">Làm lại</button>
-                                        <button type="submit" class="btn btn-primary" name="">Cập nhật</button>
+                                        <button type="submit" class="btn btn-primary" name="">Thêm</button>
                                     </div>
                                 </div>
                             </form>
