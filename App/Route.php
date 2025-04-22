@@ -19,9 +19,12 @@ class Route
     }
     public static function put($url, $controllerMethod): void
     {
-        if (isset($_POST['method']))
-            if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['method'] == 'PUT')
-                self::$routes[$url] = $controllerMethod;
+        // index.php hoặc file routing chính
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_method'])) {
+            $_SERVER['REQUEST_METHOD'] = strtoupper($_POST['_method']);
+        }
+        self::$routes[$url] = $controllerMethod;
+
     }
     public static function delete($url, $controllerMethod): void
     {

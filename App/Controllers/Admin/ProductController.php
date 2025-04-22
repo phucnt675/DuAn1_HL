@@ -171,7 +171,8 @@ class ProductController
         }
         $data = [
             'product' => $data_product,
-            'category' => $data_category
+            'category' => $data_category,
+            
         ];
         //echo'<pre>';
         //var_dump($data);
