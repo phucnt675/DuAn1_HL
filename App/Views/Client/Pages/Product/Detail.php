@@ -249,22 +249,38 @@ class Detail extends BaseView
                                                                     if (isset($data) &&  $is_login && ($_SESSION['users']['id'] == $item['users_id'])) :
                                                                     ?>
                                                                         <!-- <button type="button" class="btn btn-cyan btn-sm" data-toggle="collapse" data-target="#<?= $item['username'] ?><?= $item['id'] ?>" aria-expanded="false" aria-controls="<?= $item['username'] ?><?= $item['id'] ?>">Sửa</button> -->
+                                                                        <!-- Nút để hiển thị form cập nhật -->
+                                                                        <button type="button" class="btn btn-warning btn-sm" onclick="toggleEditForm(<?= $item['id'] ?>)">Sửa</button>
+
                                                                         <form action="/comments/<?= $item['id'] ?>" method="post" onsubmit="return confirm('Chắc chưa?')" style="display: inline-block">
                                                                             <input type="hidden" name="method" value="DELETE" id="">
                                                                             <input type="hidden" name="product_id" value="<?= $data['products']['id'] ?>" id="">
                                                                             <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
                                                                         </form>
-                                                                        <form action="/comments/<?= $item['id'] ?>" method="post">
+                                                                        <!-- <form action="/comments/<?= $item['id'] ?>" method="post">
                                                                             <input type="hidden" name="_method" value="PUT">
                                                                             <input type="hidden" name="product_id" value="<?= $data['products']['id'] ?>">
                                                                             <input type="text" name="content" value="<?= $item['content'] ?>" required>
                                                                             <button type="submit" class="btn btn-warning btn-sm">Cập nhật</button>
+                                                                        </form> -->
+                                                                        <form id="edit-form-<?= $item['id'] ?>" action="/comments/<?= $item['id'] ?>" method="post" style="display: none; margin-top: 10px;">
+                                                                            <input type="hidden" name="_method" value="PUT">
+                                                                            <input type="hidden" name="product_id" value="<?= $data['products']['id'] ?>">
+                                                                            <input type="text" name="content" value="<?= $item['content'] ?>" required>
+                                                                            <button type="submit" class="btn btn-success btn-sm">Cập nhật</button>
                                                                         </form>
+                                                                        <script>
+                                                                            function toggleEditForm(id) {
+                                                                                const form = document.getElementById('edit-form-' + id);
+                                                                                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+                                                                            }
+                                                                        </script>
 
 
 
 
-                                                                        
+
+
 
                                                                     <?php
                                                                     endif;
