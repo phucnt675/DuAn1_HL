@@ -19,6 +19,7 @@ use App\Models\Category;
 
 class AuthController
 {
+  
   // hiển thị giao diện form đăng ký 
   public static function register(): void
   {

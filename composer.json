@@ -1,18 +1,20 @@
 {
-    "name": "huy/duan1_as",
+    "name": "phuc/duan1_chocolate",
     "autoload": {
         "psr-4": {
-            "App\\":"App/"
-
+            "App\\":"App/",
+            "Google\\": "vendor/google/apiclient/src"
         }
     },
     "authors": [
         {
             "name": "trgh",
-            "email": "huytgpc08697@gmail.com"
+            "email": "phucntpc08600@gmail.com"
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.6",
+        "google/apiclient": "^2.13",
+        "google/auth": "^1.10"
     }
 }
