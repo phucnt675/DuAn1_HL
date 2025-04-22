@@ -15,6 +15,16 @@ class CommentController
     // xử lý chức năng thêm
     public static function store()
     {
+
+        // Kiểm tra đăng nhập
+        if (!isset($_SESSION['users'])) {
+            NotificationHelper::error('store', 'Bạn phải đăng nhập để bình luận');
+            header("location: /login");
+            exit;
+        }
+    
+        // Lấy user id từ session
+        $users_id = $_SESSION['users']['id'];
         // Validate the form data
         $is_valid = CommentValidation::createClient();
         if (!$is_valid) {
@@ -31,6 +41,7 @@ class CommentController
             'content' => $_POST['content'],
             'product_id' => $_POST['product_id'],
             'users_id' => $_POST['users_id'],
+            'status' => 1,
         ];
         $comment = new Comment();
 
@@ -52,7 +63,7 @@ class CommentController
         
         $is_valid = CommentValidation::editClient();
         if (!$is_valid) {
-            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
+            NotificationHelper::error('update', 'Cập nhật bình luận thất bại');
             if (isset($_POST['product_id']) && ($_POST['product_id'])) {
                 $product_id = $_POST['product_id'];
                 header("location: /products/$product_id");
@@ -68,9 +79,9 @@ class CommentController
         $comment = new Comment();
         $result = $comment->updateComment($id, $data);
         if ($result) {
-            NotificationHelper::success('update', 'Cập nhật loại sản phẩm thành công');
+            NotificationHelper::success('update', 'Cập nhật bình luận thành công');
         } else {
-            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
+            NotificationHelper::error('update', 'Cập nhật bình luận thất bại');
         }
         if (isset($_POST['product_id']) && ($_POST['product_id'])) {
             $product_id = $_POST['product_id'];
