@@ -97,7 +97,7 @@ class Home extends BaseView
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                         Bình luận</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['total_comment'] ?></div>
+                                    <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['total_comment'] ?></div> -->
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-comments fa-2x text-gray-300"></i>

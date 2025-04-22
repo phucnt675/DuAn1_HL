@@ -46,16 +46,16 @@ class HomeController
                 }
 
                 $comment = new Comment();
-                $total_comment = $comment->countTotalComment();
-                $comment_by_product = $comment->countCommentByProduct();
+                // $total_comment = $comment->countTotalComment();
+                // $comment_by_product = $comment->countCommentByProduct();
 
                 $data = [
                         'total_user' => $total_user['total'],
                         'total_category' => $total_category['total'],
                         'total_product' => $total_product['total'],
-                        'total_comment' => $total_comment['total'],
+                        // 'total_comment' => $total_comment['total'],
                         'product_by_category' => $product_by_category,
-                        'comment_by_product' => $comment_by_product
+                        // 'comment_by_product' => $comment_by_product
                 ];
 
 

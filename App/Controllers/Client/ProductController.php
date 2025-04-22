@@ -93,6 +93,8 @@ class ProductController
         // Lấy thông tin danh mục của sản phẩm hiện tại
         $category_id = $products_detail['category_id'];
 
+        $comment = new Comment();
+        $comments = $comment->get5CommentNewestByProductAndStatus($id);
         // Lấy sản phẩm liên quan dựa trên category_id
         $product_related = $products->getRelatedProducts($id, $category_id);
         $data = [
@@ -101,6 +103,7 @@ class ProductController
             'product_related' => $product_related,
             'categories' => $categories,
             'productWithDetail' => $productwithdetail,
+            'comment' => $comments,
 
 
         ];
